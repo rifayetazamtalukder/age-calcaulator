@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+// Material Modules
+import { MaterialModulesModule } from "./material-modules/material-modules.module";
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,7 +27,8 @@ import { TopnavWithSidenavComponent } from './topnav-with-sidenav/topnav-with-si
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MaterialModulesModule
   ],
   providers: [],
   bootstrap: [AppComponent]
