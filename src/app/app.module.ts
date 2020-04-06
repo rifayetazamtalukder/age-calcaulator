@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 // Material Modules
 import { MaterialModulesModule } from "./material-modules/material-modules.module";
 
+import { HttpClientModule } from "@angular/common/http"; // Needed for svgIcon
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -28,7 +30,8 @@ import { TopnavWithSidenavComponent } from './topnav-with-sidenav/topnav-with-si
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModulesModule
+    MaterialModulesModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

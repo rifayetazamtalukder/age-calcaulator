@@ -1,1 +1,147 @@
-<p>topnav-with-sidenav works!</p>
+<!--  -->
+<!--  -->
+<!--  -->
+
+
+<!-- Toolbar with sidenav -->
+<mat-sidenav-container class="sidenav-container">
+    <!--  -->
+    <mat-sidenav #drawer class="sidenav" fixedInViewport="false" [mode]="navMode" [opened]="isSideNavOpen">
+        <!--  -->
+        <!-- Side Navigation bar Menu -->
+        <!--  -->
+        <mat-toolbar color="primary">
+            <span>Menu</span>
+            <!--  -->
+            <span class="spacer"></span>
+            <!--  -->
+            <span>
+                <button *ngIf="drawer.opened" mat-icon-button (click)="drawer.toggle()" type="button"
+                    aria-label="Toogle sidenav">
+                    <!--  -->
+                    <!-- Icon Whrn Sidenav is Open -->
+                    <mat-icon svgIcon="close-white" aria-label="Sidenav toggle close icon"
+                        matTooltip="Closes Side Navigation menu" matTooltipShowDelay="600"
+                        matTooltipClass="custom-tooltip">
+                    </mat-icon>
+
+                </button>
+            </span>
+        </mat-toolbar>
+        <!--  -->
+        <mat-nav-list>
+            <!--  -->
+            <!-- Menu Links -->
+            <!--  -->
+            <a mat-list-item routerLink="/">Home</a>
+            <mat-divider></mat-divider>
+            <a mat-list-item routerLink="/about">About</a>
+            <mat-divider></mat-divider>
+            <a mat-list-item routerLink="/help">Help</a>
+            <!--  -->
+            <!-- End of Menu Links -->
+            <!--  -->
+        </mat-nav-list>
+        <!--  -->
+        <!-- End of Side Navigation bar Menu -->
+        <!--  -->
+    </mat-sidenav>
+    <!--  -->
+    <mat-sidenav-content>
+        <mat-toolbar color="primary">
+            <button *ngIf="!drawer.opened" mat-icon-button (click)="drawer.toggle()" type="button"
+                aria-label="Toggle sidenav">
+                <!--  -->
+                <!-- When Sidenav is Open The Close Button is rendered in above <mat-toolbar> -->
+                <!--  -->
+                <!-- Icon When Side nav is Closed -->
+                <mat-icon svgIcon="menu-white" aria-label="Sidenav toggle open icon"
+                    matTooltip="Opens side navigation menu" matTooltipShowDelay="600" matTooltipClass="custom-tooltip">
+                </mat-icon>
+            </button>
+            <!--  -->
+
+            <span>
+                <button class="app-name" routerLink="/" mat-flat-button color="primary">
+                    Age Calculator
+                </button>
+            </span>
+            <!--  -->
+            <span class="spacer"></span>
+            <!--  -->
+
+            <!-- Right Side Menu Button -->
+            <!-- This should be at the end of this list -->
+            <button mat-icon-button [matMenuTriggerFor]="topRightSideMenu"
+                aria-label="Top RIght Side Dotted Menu Button" matTooltip="Opens Menu Option" matTooltipShowDelay="600"
+                matTooltipClass="custom-tooltip">
+                <mat-icon svgIcon="more-vert-white"></mat-icon>
+            </button>
+
+        </mat-toolbar>
+
+        <!--  -->
+        <!-- Add Content Here -->
+        <!-- Other Pages Will Render Here -->
+        <!--  -->
+        <div class="outlet-content-wrapper">
+            <div class="main-content">
+                <router-outlet></router-outlet>
+            </div>
+            <div class="footer">
+                <app-footer></app-footer>
+            </div>
+        </div>
+    </mat-sidenav-content>
+
+</mat-sidenav-container>
+
+
+<!--  -->
+<!--  -->
+<!-- Right Side Menu Items -->
+<!--  -->
+<mat-menu #topRightSideMenu="matMenu">
+    <!--  -->
+    <button mat-menu-item color="primary">
+        <mat-icon svgIcon="settings-dark-gray"></mat-icon>
+        <span>Settings</span>
+    </button>
+    <mat-divider></mat-divider>
+    <!--  -->
+    <button mat-menu-item routerLink="/about">
+        <mat-icon svgIcon="announcement-dark-gray"></mat-icon>
+        <span>About</span>
+    </button>
+    <!--  -->
+    <mat-divider></mat-divider>
+    <!--  -->
+    <button mat-menu-item routerLink="/help">
+        <mat-icon svgIcon="help-dark-gray"></mat-icon>
+        <span>Help</span>
+    </button>
+    <!--  -->
+    <mat-divider></mat-divider>
+    <!--  -->
+    <button mat-menu-item>
+        <mat-icon style="margin-right: 12px; margin-top: -4px;" svgIcon="person-dark-gray"></mat-icon>
+        <span>
+            <a style="color: rgba(0,0,0,0.87); font-size: 14px; text-decoration: none; font-weight: 400;"
+                href="https://github.com/rifayetazamtalukder" target="_blank">
+                Rifayet Azam Talukder (Github)
+            </a>
+        </span>
+    </button>
+    <!--  -->
+    <mat-divider></mat-divider>
+    <!--  -->
+    <button mat-menu-item>
+        <mat-icon style="margin-right: 12px; margin-top: -4px;" svgIcon="facebook-blue"></mat-icon>
+        <span>
+            <a style="color: rgba(0,0,0,0.87); font-size: 14px; text-decoration: none; font-weight: 400;"
+                href="https://www.facebook.com/rifayetazam.talukder" target="_blank">
+                Rifayet Azam Talukder (Facebook)
+            </a>
+        </span>
+    </button>
+</mat-menu>

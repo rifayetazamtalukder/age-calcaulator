@@ -1,0 +1,49 @@
+
+.sidenav-container{
+    height: 100%;
+}
+
+.sidenav {
+    width: 215px;
+    background-color: #F1F1F1;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.app-name {
+    font-size: 20px;
+}
+
+.mat-toolbar.mat-primary {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
+
+.outlet-content-wrapper {
+    height: calc(100vh - 64px);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.main-content {
+    margin: 16px;
+    flex: 1 0 auto;
+}
+.footer {
+    flex-shrink: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #3f51b5;
+}
+
+
+@media screen and (max-width: 599px) {
+    .outlet-content-wrapper {
+        height: calc(100vh - 56px);
+    }
+}
