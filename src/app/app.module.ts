@@ -15,6 +15,7 @@ import { AboutPageComponent } from './about-page/about-page.component';
 import { FooterComponent } from './footer/footer.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { TopnavWithSidenavComponent } from './topnav-with-sidenav/topnav-with-sidenav.component';
+import { AgeCalculatorComponent } from './age-calculator/age-calculator.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { TopnavWithSidenavComponent } from './topnav-with-sidenav/topnav-with-si
     FooterComponent,
     PageNotFoundComponent,
     TopnavWithSidenavComponent,
+    AgeCalculatorComponent,
   ],
   imports: [
     BrowserModule,
