@@ -9,6 +9,7 @@ import { HelpPageComponent } from './help-page/help-page.component';
 import { AboutPageComponent } from './about-page/about-page.component';
 import { FooterComponent } from './footer/footer.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { TopnavWithSidenavComponent } from './topnav-with-sidenav/topnav-with-sidenav.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     HelpPageComponent,
     AboutPageComponent,
     FooterComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    TopnavWithSidenavComponent
   ],
   imports: [
     BrowserModule,
