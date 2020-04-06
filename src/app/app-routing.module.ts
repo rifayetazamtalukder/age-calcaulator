@@ -6,11 +6,16 @@ import { AboutPageComponent } from './about-page/about-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
+
 const routes: Routes = [
   {
     path: '',
     component: HomePageComponent
   },
+  // {
+  //   path: 'age',
+  //   component: AgeCalculatorComponent
+  // },
   {
     path: 'help',
     component: HelpPageComponent
