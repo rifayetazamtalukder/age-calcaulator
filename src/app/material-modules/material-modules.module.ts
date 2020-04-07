@@ -39,6 +39,8 @@ import { MatCardModule } from "@angular/material/card";
 
 import { MatRadioModule } from "@angular/material/radio";
 
+import { MatRippleModule } from '@angular/material/core';
+
 
 const MATERIAL_COMPONENTS = [
   MatButtonModule,
@@ -77,7 +79,9 @@ const MATERIAL_COMPONENTS = [
 
   MatCardModule,
 
-  MatRadioModule
+  MatRadioModule,
+
+  MatRippleModule
 ];
 
 

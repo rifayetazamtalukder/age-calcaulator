@@ -26,6 +26,18 @@ export class AppComponent {
       'more-vert-white',
       this.sanitizer.bypassSecurityTrustResourceUrl('../assets/svg-icons/more_vert-white-48dp.svg')
     );
+
+    // timer-black
+    this.iconRegistry.addSvgIcon(
+      'timer-black',
+      this.sanitizer.bypassSecurityTrustResourceUrl('../assets/svg-icons/timer-black-48dp.svg')
+    );
+    // timer-off-black
+    this.iconRegistry.addSvgIcon(
+      'timer-off-black',
+      this.sanitizer.bypassSecurityTrustResourceUrl('../assets/svg-icons/timer_off-black-48dp.svg')
+    );
+
     // settings-dark-gray
     this.iconRegistry.addSvgIcon(
       'settings-dark-gray',

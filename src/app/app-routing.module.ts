@@ -4,6 +4,7 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { HelpPageComponent } from './help-page/help-page.component';
 import { AboutPageComponent } from './about-page/about-page.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AgeCalculatorComponent } from './age-calculator/age-calculator.component';
 
 
 
@@ -12,10 +13,10 @@ const routes: Routes = [
     path: '',
     component: HomePageComponent
   },
-  // {
-  //   path: 'age',
-  //   component: AgeCalculatorComponent
-  // },
+  {
+    path: 'calculate-age',
+    component: AgeCalculatorComponent
+  },
   {
     path: 'help',
     component: HelpPageComponent

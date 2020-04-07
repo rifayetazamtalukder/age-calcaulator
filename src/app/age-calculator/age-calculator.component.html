@@ -1,1 +1,329 @@
-<p>age-calculator works!</p>
+<!--  -->
+<!--  -->
+<!--  -->
+
+<!--  -->
+<!-- mat card -->
+<!--  -->
+<mat-card class="mat-elevation-z2 mat-elevation-z8 main-container">
+    <!--  -->
+    <!-- Header Text -->
+    <!--  -->
+    <div class="header">
+        <mat-card-title>Calculate Age</mat-card-title>
+        <!--  -->
+        <mat-card-subtitle>Enter into the input field to calculate age</mat-card-subtitle>
+        <!--  -->
+        <mat-divider></mat-divider>
+    </div>
+    <!--  -->
+    <!-- End Of Header Text -->
+    <!--  -->
+
+    <!--  -->
+    <!-- Card Content -->
+    <!--  -->
+    <div class="card-contentainer">
+        <!--  -->
+        <!-- mat-card-content -->
+        <!--  -->
+        <mat-card-content>
+            <!--  -->
+            <!-- Form -->
+            <!--  -->
+            <form [formGroup]="age_form" class="form">
+                <!--  -->
+                <!-- Form Container -->
+                <!--  -->
+                <div class="form-container">
+                    <!--  -->
+                    <!-- From Date Input Field -->
+                    <!--  -->
+                    <div class="from-date-field" aria-label="From Date Input Fields">
+                        <!--  -->
+                        <!-- from-date-field -->
+                        <!--  -->
+                        <div class="date-field">
+                            <!-- From_Date -->
+                            <mat-form-field class="date-input" appearance="fill" aria-label="From_Date Input Field">
+                                <mat-label>From Date</mat-label>
+                                <input matInput [matDatepicker]="from_date_dp" required formControlName="from_date"
+                                    [errorStateMatcher]="ageCalculator_errorStateMatcher" placeholder="Birth Date">
+                                <mat-datepicker-toggle matSuffix [for]="from_date_dp"></mat-datepicker-toggle>
+                                <mat-datepicker #from_date_dp></mat-datepicker>
+
+                                <mat-hint>Example: February 21, 2000</mat-hint>
+
+                                <!-- Mat Errors For Date -->
+                                <mat-error *ngIf="from_date.hasError('required')">
+                                    This field is <strong>required</strong>
+                                </mat-error>
+                                <mat-error *ngIf="from_date.hasError('matDatepickerParse')">
+                                    Please Enter a Valid Date. <strong>Ex: March 20, 2020</strong>
+                                </mat-error>
+                            </mat-form-field>
+                            <!--  -->
+
+                            <!--  -->
+                            <!-- TIme field add remove button -->
+                            <button mat-icon-button type="button" (click)="Show_from_timeField()">
+                                <mat-icon id="timer_icon" svgIcon="timer-black" *ngIf="!_show_from_timeField"
+                                    color="primary" matTooltip="Adds time fields for from date"
+                                    matTooltipClass="custom-tooltip" matTooltipShowDelay="600"></mat-icon>
+
+                                <mat-icon id="timer_off_icon" svgIcon="timer-off-black" matRippleDisabled="true"
+                                    *ngIf="_show_from_timeField" color="primary"
+                                    matTooltip="Removes time fields for from date" matTooltipClass="custom-tooltip"
+                                    matTooltipShowDelay="600"></mat-icon>
+                            </button>
+                            <!--  -->
+                        </div>
+                        <!--  -->
+                        <!-- End of from-date-field -->
+                        <!--  -->
+
+                        <!--  -->
+                        <!-- Time Field for from_date -->
+                        <!--  -->
+                        <div *ngIf="_show_from_timeField" class="from-time-field">
+                            <!--  -->
+                            <!-- Hour Time Field -->
+                            <mat-form-field appearance="fill" class="hour">
+                                <mat-label>hour</mat-label>
+                                <input matInput type="number" formControlName="from_hour"
+                                    [errorStateMatcher]="ageCalculator_errorStateMatcher" required>
+                                <mat-hint>
+                                    <strong>Ex. 9</strong>
+                                </mat-hint>
+
+                                <!-- Errors -->
+                                <mat-error *ngIf="from_hour.hasError('required')">
+                                    <strong>required</strong>
+                                </mat-error>
+                                <mat-error *ngIf="from_hour.hasError('min')">
+                                    Minimum <strong>1</strong>
+                                </mat-error>
+
+                                <mat-error *ngIf="from_hour.hasError('max')">
+                                    Maximum <strong>12</strong>
+                                </mat-error>
+
+                                <mat-error *ngIf="from_hour.hasError('pattern')">
+                                    Please Enter a Valid Hour
+                                </mat-error>
+                                <!--  -->
+                            </mat-form-field>
+                            <!--  -->
+
+                            <!--  -->
+                            <!-- Minute Time Field -->
+                            <mat-form-field appearance="fill" class="minute">
+                                <mat-label>Minute</mat-label>
+                                <input matInput type="number" formControlName="from_minute"
+                                    [errorStateMatcher]="ageCalculator_errorStateMatcher" required>
+                                <mat-hint>
+                                    <strong>EX: 24</strong>
+                                </mat-hint>
+
+                                <!-- Errors -->
+                                <mat-error *ngIf="from_minute.hasError('required')">
+                                    <strong>required</strong>
+                                </mat-error>
+
+                                <mat-error *ngIf="from_minute.hasError('min')">
+                                    Minimum <strong>0</strong>
+                                </mat-error>
+
+                                <mat-error *ngIf="from_minute.hasError('max')">
+                                    Maximum <strong>59</strong>
+                                </mat-error>
+
+                                <mat-error *ngIf="from_minute.hasError('pattern')">
+                                    Please Enter a Valid Minute
+                                </mat-error>
+                            </mat-form-field>
+                            <!--  -->
+
+                            <!-- AM PM field for from_date Time -->
+                            <mat-radio-group formControlName="from_amPm" required color="accent"
+                                aria-label="Select either am or pm" class="amPm">
+
+                                <mat-radio-button value="am">AM</mat-radio-button>
+                                <mat-radio-button value="pm">PM</mat-radio-button>
+                            </mat-radio-group>
+
+                            <!--  -->
+                            <!-- Now Button for from_date time field -->
+                            <button mat-mini-fab (click)="Set_from_timeFieldValue()" color="primary" class="now"
+                                matTooltip="Automatically sets current local time" matTooltipClass="custom-tooltip"
+                                matTooltipShowDelay="600">Now</button>
+
+                        </div>
+                        <!--  -->
+                        <!-- End of Time Field for from_date -->
+                        <!--  -->
+
+                    </div>
+                    <!-- End of From Date Input Field -->
+                    <!--  -->
+
+                    <!--  -->
+                    <!-- To Date Input Fields -->
+                    <!--  -->
+                    <div class="to-date-field" aria-label="To Date Input Fields">
+                        <!--  -->
+                        <!-- to-date-field -->
+                        <!--  -->
+                        <div class="date-field">
+                            <!-- To_Date -->
+                            <mat-form-field class="date-input" appearance="fill">
+                                <mat-label>To Date</mat-label>
+                                <input matInput [matDatepicker]="to_date_dp" formControlName="to_date"
+                                    [errorStateMatcher]="ageCalculator_errorStateMatcher" placeholder="Current Date">
+                                <mat-datepicker-toggle matSuffix [for]="to_date_dp"></mat-datepicker-toggle>
+                                <mat-datepicker #to_date_dp></mat-datepicker>
+
+                                <mat-hint>
+                                    <strong>
+                                        Optional
+                                    </strong>
+                                </mat-hint>
+                                <!-- Mat Errors For Date -->
+                                <mat-error *ngIf="to_date.hasError('matDatepickerParse')">
+                                    Please Enter a Valid Date. <strong>Ex: March 20, 2020</strong>
+                                </mat-error>
+                            </mat-form-field>
+                            <!--  -->
+                            <!-- TIme field add remove button -->
+                            <button mat-icon-button type="button" (click)="Show_to_timeField()">
+                                <mat-icon id="timer_icon" svgIcon="timer-black" *ngIf="!_show_to_timeField"
+                                    color="primary" matTooltip="Adds time fields for to date"
+                                    matTooltipClass="custom-tooltip" matTooltipShowDelay="600"></mat-icon>
+
+                                <mat-icon id="timer_off_icon" svgIcon="timer-off-black" matRippleDisabled="true"
+                                    *ngIf="_show_to_timeField" color="primary"
+                                    matTooltip="Removes time fields for to date" matTooltipClass="custom-tooltip"
+                                    matTooltipShowDelay="600"></mat-icon>
+                            </button>
+                            <!--  -->
+                        </div>
+                        <!--  -->
+                        <!-- End of to-date-field -->
+                        <!--  -->
+
+                        <!--  -->
+                        <!-- Time Field for from_date -->
+                        <!--  -->
+                        <div *ngIf="_show_to_timeField" class="to-time-field">
+                            <!--  -->
+                            <!-- Hour Time Field -->
+                            <mat-form-field appearance="fill" class="hour">
+                                <mat-label>hour</mat-label>
+                                <input matInput type="number" formControlName="to_hour"
+                                    [errorStateMatcher]="ageCalculator_errorStateMatcher" required>
+                                <mat-hint>
+                                    <strong>Ex. 9</strong>
+                                </mat-hint>
+
+                                <!-- Errors -->
+                                <mat-error *ngIf="to_hour.hasError('required')">
+                                    <strong>required</strong>
+                                </mat-error>
+                                <mat-error *ngIf="to_hour.hasError('min')">
+                                    Minimum <strong>1</strong>
+                                </mat-error>
+
+                                <mat-error *ngIf="to_hour.hasError('max')">
+                                    Maximum <strong>12</strong>
+                                </mat-error>
+
+                                <mat-error *ngIf="to_hour.hasError('pattern')">
+                                    Please Enter a Valid Hour
+                                </mat-error>
+                                <!--  -->
+                            </mat-form-field>
+                            <!--  -->
+
+                            <!--  -->
+                            <!-- Minute Time Field -->
+                            <mat-form-field appearance="fill" class="minute">
+                                <mat-label>Minute</mat-label>
+                                <input matInput type="number" formControlName="to_minute"
+                                    [errorStateMatcher]="ageCalculator_errorStateMatcher" required>
+                                <mat-hint>
+                                    <strong>EX: 24</strong>
+                                </mat-hint>
+
+                                <!-- Errors -->
+                                <mat-error *ngIf="to_minute.hasError('required')">
+                                    <strong>required</strong>
+                                </mat-error>
+
+                                <mat-error *ngIf="to_minute.hasError('min')">
+                                    Minimum <strong>0</strong>
+                                </mat-error>
+
+                                <mat-error *ngIf="to_minute.hasError('max')">
+                                    Maximum <strong>59</strong>
+                                </mat-error>
+
+                                <mat-error *ngIf="to_minute.hasError('pattern')">
+                                    Please Enter a Valid Minute
+                                </mat-error>
+                            </mat-form-field>
+                            <!--  -->
+
+                            <!-- AM PM field for from_date Time -->
+                            <mat-radio-group formControlName="to_amPm" required color="accent"
+                                aria-label="Select either am or pm" class="amPm">
+
+                                <mat-radio-button value="am">AM</mat-radio-button>
+                                <mat-radio-button value="pm">PM</mat-radio-button>
+                            </mat-radio-group>
+
+                            <!--  -->
+                            <!-- Now Button for from_date time field -->
+                            <button mat-mini-fab (click)="Set_to_timeFieldValue()" color="primary" class="now"
+                                matTooltip="Automatically sets current local time" matTooltipClass="custom-tooltip"
+                                matTooltipShowDelay="600">Now</button>
+
+                        </div>
+                        <!--  -->
+                        <!-- End of Time Field for from_date -->
+                        <!--  -->
+
+                    </div>
+                    <!--  -->
+                    <!-- End of To Date Input Fields -->
+                    <!--  -->
+                </div>
+                <!--  -->
+                <!-- End of Form Container -->
+                <!--  -->
+
+
+                <!--  -->
+                <!-- Submit Button -->
+                <!--  -->
+                <button class="mt-23" type="submit" (click)="onSubmit()" mat-raised-button
+                    color="primary">Calculate</button>
+
+                <!--  -->
+                <!-- End of Submit Button -->
+                <!--  -->
+            </form>
+            <!--  -->
+            <!-- End of Form -->
+            <!--  -->
+        </mat-card-content>
+        <!--  -->
+        <!-- end of mat-card-content -->
+        <!--  -->
+    </div>
+    <!--  -->
+    <!-- End of Card Content -->
+    <!--  -->
+</mat-card>
+<!--  -->
+<!-- End of mat card -->
+<!--  -->

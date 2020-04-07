@@ -6,6 +6,8 @@ import { MaterialModulesModule } from "./material-modules/material-modules.modul
 
 import { HttpClientModule } from "@angular/common/http"; // Needed for svgIcon
 
+import { ReactiveFormsModule } from "@angular/forms";
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -33,7 +35,8 @@ import { AgeCalculatorComponent } from './age-calculator/age-calculator.componen
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModulesModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
