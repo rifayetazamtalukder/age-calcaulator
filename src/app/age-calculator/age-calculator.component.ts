@@ -58,7 +58,6 @@ export const MY_FORMATS = {
 export class AgeCalculatorComponent implements OnInit, OnDestroy {
 
   //#region Variables
-  public show_age: boolean = false;
   // Error State Matcher
   ageCalculator_errorStateMatcher = new AgeCalculatorErrorStateMatcher();
   private formValueChange: Subscription;
@@ -70,36 +69,47 @@ export class AgeCalculatorComponent implements OnInit, OnDestroy {
     months: 0,
     days: 0,
 
-    inOnly_months: {
-      months: 0,
-      weeks: 0,
-      days: 0,
-    },
-    inOnly_weeks: {
-      weeks: 0,
-      days: 0,
-      hours: 0,
-    },
-    inOnly_days: {
-      days: 0,
-      hours: 0,
-      minutes: 0,
-    },
-    inOnly_hours: {
-      hours: 0,
-      minutes: 0,
-      seconds: 0,
-    },
-    inOnly_minutes: {
-      minutes: 0,
-      seconds: 0,
-    },
-    inOnly_seconds: {
-      seconds: 0,
-      Millieconds: 0,
-    },
+    inOnly_months: { months: 0, weeks: 0, days: 0 },
+    inOnly_weeks: { weeks: 0, days: 0, hours: 0 },
+    inOnly_days: { days: 0, hours: 0, minutes: 0 },
+    inOnly_hours: { hours: 0, minutes: 0, seconds: 0 },
+
+    inOnly_minutes: { minutes: 0, seconds: 0 },
+    inOnly_seconds: { seconds: 0, milliseconds: 0 },
+
     inOnly_milliseconds: 0
   }
+
+  public age_str_values = {
+    years: '',
+    months: '',
+    days: '',
+
+    inOnly_months: { months: '', weeks: '', days: '' },
+    inOnly_weeks: { weeks: '', days: '', hours: '' },
+    inOnly_days: { days: '', hours: '', minutes: '' },
+    inOnly_hours: { hours: '', minutes: '', seconds: '' },
+
+    inOnly_minutes: { minutes: '', seconds: '' },
+    inOnly_seconds: { seconds: '', milliseconds: '' },
+
+    inOnly_milliseconds: ''
+  }
+
+  public age_in_text = {
+    age: '',
+
+    inOnly_months: '',
+    inOnly_weeks: '',
+    inOnly_days: '',
+    inOnly_hours: '',
+
+    inOnly_minutes: '',
+    inOnly_seconds: '',
+
+    inOnly_milliseconds: ''
+  }
+  public _showResults: boolean = false;
   //#endregion Variables
 
   // 
@@ -107,11 +117,12 @@ export class AgeCalculatorComponent implements OnInit, OnDestroy {
   // 
   ngOnInit() {
     this.formValueChange = this.age_form.valueChanges.subscribe(() => {
-      this.show_age = false;
+      this._showResults = false;
     });
 
     this._show_from_timeField = false;
     this._show_to_timeField = false;
+    this._showResults = false;
   }
   // 
   ngOnDestroy() {
@@ -178,7 +189,7 @@ export class AgeCalculatorComponent implements OnInit, OnDestroy {
         Validators.required,
         Validators.min(0),
         Validators.max(59),
-        Validators.pattern('[0-5]|1[0-9]|1')
+        Validators.pattern('[0-9]|2')
       ]);
 
       this.from_amPm.setValidators([Validators.required]);
@@ -219,7 +230,7 @@ export class AgeCalculatorComponent implements OnInit, OnDestroy {
         Validators.required,
         Validators.min(0),
         Validators.max(59),
-        Validators.pattern('[0-5]|1[0-9]|1')
+        Validators.pattern('[0-9]|2')
       ]);
 
       this.to_amPm.setValidators([Validators.required]);
@@ -343,7 +354,7 @@ export class AgeCalculatorComponent implements OnInit, OnDestroy {
       // 
       //#region From Date
       // 
-      // Get the from date value and pass into moment()
+      // Get the from_date value and pass into moment()
       _from_date = moment(this.from_date.value);
       //
       // When Time is given 
@@ -405,11 +416,7 @@ export class AgeCalculatorComponent implements OnInit, OnDestroy {
       }
       else {
         // 
-        // Set the hour, min, sec to current time
-        // 
-        // This is done in condition  << if(this.to_date.value === null) >>
-        // On that function _to_date will automatically take the time as 24 hour fomat
-        // so don't have to convert it to 24 hour format
+        // Set current local hour, min, sec to to_date
         // 
         let _current_time = new Date();
         _to_date.set({
@@ -418,7 +425,6 @@ export class AgeCalculatorComponent implements OnInit, OnDestroy {
           second: 0,
           milisecond: 0,
         });
-
       }
 
       console.log(`
@@ -447,6 +453,7 @@ export class AgeCalculatorComponent implements OnInit, OnDestroy {
       // 
       this.age.inOnly_months.months = Math.floor(_age_values.asMonths());
       this.age.inOnly_months.weeks = (_age_values.asMonths() % 1) * 4.34524;
+      // console.log(`in months [week]: ${this.age.inOnly_months.weeks}`);
       this.age.inOnly_months.days = Math.floor((this.age.inOnly_months.weeks % 1) * 7);
       this.age.inOnly_months.weeks = Math.floor(this.age.inOnly_months.weeks);
 
@@ -454,7 +461,7 @@ export class AgeCalculatorComponent implements OnInit, OnDestroy {
       // 
       this.age.inOnly_weeks.weeks = Math.floor(_age_values.asWeeks());
       this.age.inOnly_weeks.days = (_age_values.asWeeks() % 1) * 7;
-      this.age.inOnly_weeks.hours = Math.floor((this.age.inOnly_weeks.days % 1) * 60);
+      this.age.inOnly_weeks.hours = Math.floor((this.age.inOnly_weeks.days % 1) * 24);
       this.age.inOnly_weeks.days = Math.floor(this.age.inOnly_weeks.days);
 
       // 
@@ -473,30 +480,48 @@ export class AgeCalculatorComponent implements OnInit, OnDestroy {
       this.age.inOnly_minutes.seconds = Math.floor((_age_values.asMinutes() % 1) * 60);
       //  
       this.age.inOnly_seconds.seconds = Math.floor(_age_values.asSeconds());
-      this.age.inOnly_seconds.Millieconds = Math.floor((_age_values.asSeconds() % 1) * 1000);
+      this.age.inOnly_seconds.milliseconds = Math.floor((_age_values.asSeconds() % 1) * 1000);
       // 
       this.age.inOnly_milliseconds = Math.floor(_age_values.asMilliseconds());
-
-      console.log(`
-      Your Age is: ${this.age.years} years ${this.age.months} months ${this.age.days} days
-
-      IN MONTHS:       ${this.age.inOnly_months.months} Months ${this.age.inOnly_months.weeks} Weeks ${this.age.inOnly_months.days} Days
-
-      IN WEEKS:        ${this.age.inOnly_weeks.weeks} Weeks ${this.age.inOnly_weeks.days} Days ${this.age.inOnly_weeks.hours} Hours
-
-      IN DAYS:         ${this.age.inOnly_days.days} Days ${this.age.inOnly_days.hours} Hours ${this.age.inOnly_days.minutes} Minutes
-
-      IN HOURS:        ${this.age.inOnly_hours.hours} Hours ${this.age.inOnly_hours.minutes} Minutes ${this.age.inOnly_hours.seconds} Seconds
-
-      IN MINUTES:      ${this.age.inOnly_minutes.minutes} Minutes  ${this.age.inOnly_minutes.seconds} Seconds
-
-      IN SECONDS:      ${this.age.inOnly_seconds.seconds} Seconds ${this.age.inOnly_seconds.Millieconds} Milliseconds
-
-      IN MILLISECONDS: ${this.age.inOnly_milliseconds} Millieconds`);
 
       // 
       //#endregion Calculate Age
       // 
+
+      // Formate the string for [year, years] [month, months]
+      this.FormatString_forAge(this.age);
+
+      // 
+      // Now Format the text for age_in_text
+      // 
+      // This function must be after FormatString_forAge(this.age)
+      this.FormatAge_inText();
+
+
+      // 
+      // Set the showResults value true to render results in html
+      this._showResults = true;
+
+      // 
+      // Results in Console
+      // 
+      console.log(`
+
+      Your Age is:     ${this.age.years} ${this.age_str_values.years} ${this.age.months} ${this.age_str_values.months} ${this.age.days} ${this.age_str_values.days}
+
+      IN MONTHS:       ${this.age.inOnly_months.months} ${this.age_str_values.inOnly_months.months} ${this.age.inOnly_months.weeks} ${this.age_str_values.inOnly_months.weeks} ${this.age.inOnly_months.days} ${this.age_str_values.inOnly_months.days}
+
+      IN WEEKS:        ${this.age.inOnly_weeks.weeks} ${this.age_str_values.inOnly_weeks.weeks} ${this.age.inOnly_weeks.days} ${this.age_str_values.inOnly_weeks.days} ${this.age.inOnly_weeks.hours} ${this.age_str_values.inOnly_weeks.hours}
+
+      IN DAYS:         ${this.age.inOnly_days.days} ${this.age_str_values.inOnly_days.days} ${this.age.inOnly_days.hours} ${this.age_str_values.inOnly_days.hours} ${this.age.inOnly_days.minutes} ${this.age_str_values.inOnly_days.minutes}
+
+      IN HOURS:        ${this.age.inOnly_hours.hours} ${this.age_str_values.inOnly_hours.hours} ${this.age.inOnly_hours.minutes} ${this.age_str_values.inOnly_hours.minutes} ${this.age.inOnly_hours.seconds} ${this.age_str_values.inOnly_hours.seconds}
+
+      IN MINUTES:      ${this.age.inOnly_minutes.minutes} ${this.age_str_values.inOnly_minutes.minutes}  ${this.age.inOnly_minutes.seconds} ${this.age_str_values.inOnly_minutes.seconds}
+
+      IN SECONDS:      ${this.age.inOnly_seconds.seconds} ${this.age_str_values.inOnly_seconds.seconds} ${this.age.inOnly_seconds.milliseconds} ${this.age_str_values.inOnly_seconds.milliseconds}
+
+      IN MILLISECONDS: ${this.age.inOnly_milliseconds} ${this.age_str_values.inOnly_milliseconds}`);
 
     }//if
     else {
@@ -544,6 +569,114 @@ export class AgeCalculatorComponent implements OnInit, OnDestroy {
   }
   //#endregion ConvertTo24HourFormat(_hour, _amPm)
 
+  // 
+  //#region FormatString_forAge(_age_values)
+  FormatString_forAge(_age) {
+    // 
+    this.age_str_values.years = this.SingularOrPlural(_age.years, 'year', 'years');
+    this.age_str_values.months = this.SingularOrPlural(_age.months, 'month', 'months');
+    this.age_str_values.days = this.SingularOrPlural(_age.days, 'day', 'days');
+    // 
+    this.age_str_values.inOnly_months.months = this.SingularOrPlural(_age.inOnly_months.months, 'month', 'months');
+    this.age_str_values.inOnly_months.weeks = this.SingularOrPlural(_age.inOnly_months.weeks, 'week', 'weeks');
+    this.age_str_values.inOnly_months.days = this.SingularOrPlural(_age.inOnly_months.days, 'day', 'days');
+    // 
+    this.age_str_values.inOnly_weeks.weeks = this.SingularOrPlural(_age.inOnly_weeks.weeks, 'week', 'weeks');
+    this.age_str_values.inOnly_weeks.days = this.SingularOrPlural(_age.inOnly_weeks.days, 'day', 'days');
+    this.age_str_values.inOnly_weeks.hours = this.SingularOrPlural(_age.inOnly_weeks.hours, 'hour', 'hours');
+    //
+    this.age_str_values.inOnly_days.days = this.SingularOrPlural(_age.inOnly_days.days, 'day', 'days');
+    this.age_str_values.inOnly_days.hours = this.SingularOrPlural(_age.inOnly_days.hours, 'hour', 'hours');
+    this.age_str_values.inOnly_days.minutes = this.SingularOrPlural(_age.inOnly_days.minutes, 'minute', 'minutes');
+    //
+    this.age_str_values.inOnly_hours.hours = this.SingularOrPlural(_age.inOnly_hours.hours, 'hour', 'hours');
+    this.age_str_values.inOnly_hours.minutes = this.SingularOrPlural(_age.inOnly_hours.minutes, 'minute', 'minutes');
+    this.age_str_values.inOnly_hours.seconds = this.SingularOrPlural(_age.inOnly_hours.seconds, 'second', 'seconds');
+    // 
+    this.age_str_values.inOnly_minutes.minutes = this.SingularOrPlural(_age.inOnly_minutes.minutes, 'minute', 'minutes');
+    this.age_str_values.inOnly_minutes.seconds = this.SingularOrPlural(_age.inOnly_minutes.seconds, 'second', 'seconds');
+    // 
+    this.age_str_values.inOnly_seconds.seconds = this.SingularOrPlural(_age.inOnly_seconds.seconds, 'second', 'seconds');
+    this.age_str_values.inOnly_seconds.milliseconds = this.SingularOrPlural(_age.inOnly_seconds.milliseconds, 'millisecond', 'milliseconds');
+    // 
+    this.age_str_values.inOnly_milliseconds = this.SingularOrPlural(_age.inOnly_milliseconds, 'millisecond', 'milliseconds');
+
+  }
+  // 
+  //#endregion FormatString_forAge(_age_values)
+  // 
+
+  // 
+  //#region FormatAge_inText()
+  FormatAge_inText() {
+    // 
+    this.age_in_text.age = `${this.age.years} ${this.age_str_values.years} ${this.age.months} ${this.age_str_values.months} ${this.age.days} ${this.age_str_values.days}`;
+
+    this.age_in_text.inOnly_months = `${this.age.inOnly_months.months} ${this.age_str_values.inOnly_months.months} ${this.age.inOnly_months.weeks} ${this.age_str_values.inOnly_months.weeks} ${this.age.inOnly_months.days} ${this.age_str_values.inOnly_months.days}`;
+
+    this.age_in_text.inOnly_weeks = `${this.age.inOnly_weeks.weeks} ${this.age_str_values.inOnly_weeks.weeks} ${this.age.inOnly_weeks.days} ${this.age_str_values.inOnly_weeks.days} ${this.age.inOnly_weeks.hours} ${this.age_str_values.inOnly_weeks.hours}`;
+
+    this.age_in_text.inOnly_days = `${this.age.inOnly_days.days} ${this.age_str_values.inOnly_days.days} ${this.age.inOnly_days.hours} ${this.age_str_values.inOnly_days.hours} ${this.age.inOnly_days.minutes} ${this.age_str_values.inOnly_days.minutes}`;
+
+    this.age_in_text.inOnly_hours = `${this.age.inOnly_hours.hours} ${this.age_str_values.inOnly_hours.hours} ${this.age.inOnly_hours.minutes} ${this.age_str_values.inOnly_hours.minutes} ${this.age.inOnly_hours.seconds} ${this.age_str_values.inOnly_hours.seconds}`;
+
+    this.age_in_text.inOnly_minutes = `${this.age.inOnly_minutes.minutes} ${this.age_str_values.inOnly_minutes.minutes}  ${this.age.inOnly_minutes.seconds} ${this.age_str_values.inOnly_minutes.seconds}`;
+
+    this.age_in_text.inOnly_seconds = `${this.age.inOnly_seconds.seconds} ${this.age_str_values.inOnly_seconds.seconds} ${this.age.inOnly_seconds.milliseconds} ${this.age_str_values.inOnly_seconds.milliseconds}`;
+
+    this.age_in_text.inOnly_milliseconds = `${this.age.inOnly_milliseconds} ${this.age_str_values.inOnly_milliseconds}`;
+    // 
+  }
+  // 
+  //#endregion FormatAge_inText()
+
+  // 
+  //#region SingularOrPlural()
+  SingularOrPlural(_value, _singular: string, _plural: string) {
+    if (_value > 1) {
+      return _plural;
+    }
+    else {
+      return _singular;
+    }
+  }
+  // 
+  //#endregion #region SingularOrPlural()
+  // 
+
+  // 
+  //#region ResetAllFormFields()
+  ResetAllFormFields() {
+    // 
+    // Reset from_date fields
+    // 
+    this.age_form.patchValue({
+      from_date: ''
+    });
+    if (this._show_from_timeField === true) {
+      this.age_form.patchValue({
+        from_hour: '',
+        from_minute: '',
+        from_amPm: 'am'
+      });
+    }
+
+    // 
+    // Reset to_date fields
+    // 
+    this.age_form.patchValue({
+      to_date: moment(new Date())
+    });
+    if (this._show_to_timeField === true) {
+      this.age_form.patchValue({
+        to_hour: '',
+        to_minute: '',
+        to_amPm: 'am'
+      });
+    }
+  }
+  // 
+  //#endregion ResetAllFormFields()
 
 
   // 

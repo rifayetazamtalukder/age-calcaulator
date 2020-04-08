@@ -18,26 +18,26 @@
 
 .date-input {
     width: 266px;
+    font-size: 18px;
 }
 
 .to-date-field {
     margin-bottom: 20px;
-    /* background-color: red; */
 }
 
+.time_button {
+    margin-top: 16px;
+    margin-left: 10px;
+}
 
-#timer_icon svg {
+.timer_icon svg {
     fill: #3f51b5;
-    width: 44px;
-    height: 44px;
-    margin-top: -3px;
+    transform: scale(2.3);
 }
 
-#timer_off_icon svg {
+.timer_off_icon svg {
     fill: #f44336;
-    width: 44px;
-    height: 44px;
-    margin-top: -3px;
+    transform: scale(2.3);
 }
 
 .from-time-field, .to-time-field {
@@ -46,6 +46,10 @@
     flex-direction: row;
     width: 316px;
     /* background-color: greenyellow; */
+}
+
+.margin-top-3 {
+    margin-top: 3px;
 }
 
 .hour, .minute {
@@ -72,3 +76,52 @@
     margin-left: 10px;
     margin-top: 5px;
 }
+
+
+
+.button-group > button:not(:first-child) {
+    margin-left: 10px;
+}
+
+
+/* Result Panel */
+.result-panel {
+    margin-top: 20px;
+}
+
+.text-box-main, .text-box {
+    border: 2px solid #7b1fa2;
+    display: flex;
+    flex-direction: row;
+}
+
+.text-box {
+    margin-top: 10px;
+}
+.age-text-main, .age-text{
+    color: #3f51b5;
+    font-weight: 500;
+}
+
+.age-text-main {
+    font-size: 30px;
+}
+
+.age-text-value-main {
+    font-size: 25px;
+    margin-bottom: -3px;
+}
+
+.age-text-value-main, .age-text-value {
+    margin-left: 5px;
+}
+
+.age-text {
+    font-size: 20px;
+}
+.age-text-value {
+    font-size: 20px;
+    /* margin-bottom: -2px; */
+    
+}
+/* End of Result Panel */

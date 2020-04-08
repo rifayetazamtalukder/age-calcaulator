@@ -11,6 +11,8 @@ export class AppComponent {
   title = 'Age Calculator';
 
   constructor(private iconRegistry: MatIconRegistry, private sanitizer: DomSanitizer) {
+    // 
+    //#region Icon Registry
     // close-white
     this.iconRegistry.addSvgIcon(
       'close-white',
@@ -63,5 +65,7 @@ export class AppComponent {
       'facebook-blue',
       this.sanitizer.bypassSecurityTrustResourceUrl('../assets/svg-icons/facebook-blue.svg')
     );
+    // 
+    //#endregion Icon Registry
   }
 }
