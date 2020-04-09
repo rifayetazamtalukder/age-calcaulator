@@ -39,7 +39,7 @@ import { MatCardModule } from "@angular/material/card";
 
 import { MatRadioModule } from "@angular/material/radio";
 
-import { MatRippleModule } from '@angular/material/core';
+import { MatTabsModule } from '@angular/material/tabs';
 
 
 const MATERIAL_COMPONENTS = [
@@ -81,7 +81,7 @@ const MATERIAL_COMPONENTS = [
 
   MatRadioModule,
 
-  MatRippleModule
+  MatTabsModule
 ];
 
 

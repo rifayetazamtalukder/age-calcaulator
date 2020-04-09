@@ -5,7 +5,8 @@
 <!--  -->
 <!-- mat card -->
 <!--  -->
-<mat-card class="mat-elevation-z2 mat-elevation-z8 main-container">
+<!-- <mat-card class="mat-elevation-z2 mat-elevation-z8 main-container"> -->
+<mat-card class="mat-elevation-z4 main-container">
     <!--  -->
     <!-- Header Text -->
     <!--  -->
@@ -83,94 +84,88 @@
                         <!--  -->
                         <!-- Extra margin for two error -->
 
-                        <div>
-                            <!-- Spacer When Multiple Error occurs -->
-                            <span style="margin: 2px;"
-                                *ngIf="from_date.hasError('required') && from_date.hasError('matDatepickerParse') && _show_from_timeField === true"></span>
+                        <!--  -->
+                        <!-- Time Field for from_date -->
+                        <!--  -->
+                        <div *ngIf="_show_from_timeField"
+                            [class.margin-top-20]="from_date.hasError('required') && from_date.hasError('matDatepickerParse')"
+                            class="from-time-field">
+                            <!--  -->
+                            <!-- Hour Time Field -->
+                            <mat-form-field appearance="fill" class="hour">
+                                <mat-label>hour</mat-label>
+                                <input matInput type="number" formControlName="from_hour"
+                                    [errorStateMatcher]="ageCalculator_errorStateMatcher" required>
+                                <mat-hint>
+                                    <strong>Ex. 9</strong>
+                                </mat-hint>
+
+                                <!-- Errors -->
+                                <mat-error *ngIf="from_hour.hasError('required')">
+                                    <strong>required</strong>
+                                </mat-error>
+                                <mat-error *ngIf="from_hour.hasError('min')">
+                                    Minimum <strong>1</strong>
+                                </mat-error>
+
+                                <mat-error *ngIf="from_hour.hasError('max')">
+                                    Maximum <strong>12</strong>
+                                </mat-error>
+
+                                <mat-error *ngIf="from_hour.hasError('pattern')">
+                                    Please Enter a Valid Hour
+                                </mat-error>
+                                <!--  -->
+                            </mat-form-field>
+                            <!--  -->
+                            <!--  -->
+                            <!-- Minute Time Field -->
+                            <mat-form-field appearance="fill" class="minute">
+                                <mat-label>Minute</mat-label>
+                                <input matInput type="number" formControlName="from_minute"
+                                    [errorStateMatcher]="ageCalculator_errorStateMatcher" required>
+                                <mat-hint>
+                                    <strong>EX: 24</strong>
+                                </mat-hint>
+
+                                <!-- Errors -->
+                                <mat-error *ngIf="from_minute.hasError('required')">
+                                    <strong>required</strong>
+                                </mat-error>
+
+                                <mat-error *ngIf="from_minute.hasError('min')">
+                                    Minimum <strong>0</strong>
+                                </mat-error>
+
+                                <mat-error *ngIf="from_minute.hasError('max')">
+                                    Maximum <strong>59</strong>
+                                </mat-error>
+
+                                <mat-error *ngIf="from_minute.hasError('pattern')">
+                                    Please Enter a Valid Minute
+                                </mat-error>
+                            </mat-form-field>
                             <!--  -->
 
+                            <!-- AM PM field for from_date Time -->
+                            <mat-radio-group formControlName="from_amPm" required color="accent"
+                                aria-label="Select either am or pm" class="amPm">
+
+                                <mat-radio-button value="am">AM</mat-radio-button>
+                                <mat-radio-button value="pm">PM</mat-radio-button>
+                            </mat-radio-group>
+
                             <!--  -->
-                            <!-- Time Field for from_date -->
-                            <!--  -->
-                            <div *ngIf="_show_from_timeField"
-                                [class.margin-top-3]="from_date.hasError('required') && from_date.hasError('matDatepickerParse')"
-                                class="from-time-field">
-                                <!--  -->
-                                <!-- Hour Time Field -->
-                                <mat-form-field appearance="fill" class="hour">
-                                    <mat-label>hour</mat-label>
-                                    <input matInput type="number" formControlName="from_hour"
-                                        [errorStateMatcher]="ageCalculator_errorStateMatcher" required>
-                                    <mat-hint>
-                                        <strong>Ex. 9</strong>
-                                    </mat-hint>
+                            <!-- Now Button for from_date time field -->
+                            <button mat-mini-fab (click)="Set_from_timeFieldValue()" color="primary" class="now"
+                                matTooltip="Automatically sets current local time" matTooltipClass="custom-tooltip"
+                                matTooltipShowDelay="600">Now</button>
 
-                                    <!-- Errors -->
-                                    <mat-error *ngIf="from_hour.hasError('required')">
-                                        <strong>required</strong>
-                                    </mat-error>
-                                    <mat-error *ngIf="from_hour.hasError('min')">
-                                        Minimum <strong>1</strong>
-                                    </mat-error>
-
-                                    <mat-error *ngIf="from_hour.hasError('max')">
-                                        Maximum <strong>12</strong>
-                                    </mat-error>
-
-                                    <mat-error *ngIf="from_hour.hasError('pattern')">
-                                        Please Enter a Valid Hour
-                                    </mat-error>
-                                    <!--  -->
-                                </mat-form-field>
-                                <!--  -->
-                                <!--  -->
-                                <!-- Minute Time Field -->
-                                <mat-form-field appearance="fill" class="minute">
-                                    <mat-label>Minute</mat-label>
-                                    <input matInput type="number" formControlName="from_minute"
-                                        [errorStateMatcher]="ageCalculator_errorStateMatcher" required>
-                                    <mat-hint>
-                                        <strong>EX: 24</strong>
-                                    </mat-hint>
-
-                                    <!-- Errors -->
-                                    <mat-error *ngIf="from_minute.hasError('required')">
-                                        <strong>required</strong>
-                                    </mat-error>
-
-                                    <mat-error *ngIf="from_minute.hasError('min')">
-                                        Minimum <strong>0</strong>
-                                    </mat-error>
-
-                                    <mat-error *ngIf="from_minute.hasError('max')">
-                                        Maximum <strong>59</strong>
-                                    </mat-error>
-
-                                    <mat-error *ngIf="from_minute.hasError('pattern')">
-                                        Please Enter a Valid Minute
-                                    </mat-error>
-                                </mat-form-field>
-                                <!--  -->
-
-                                <!-- AM PM field for from_date Time -->
-                                <mat-radio-group formControlName="from_amPm" required color="accent"
-                                    aria-label="Select either am or pm" class="amPm">
-
-                                    <mat-radio-button value="am">AM</mat-radio-button>
-                                    <mat-radio-button value="pm">PM</mat-radio-button>
-                                </mat-radio-group>
-
-                                <!--  -->
-                                <!-- Now Button for from_date time field -->
-                                <button mat-mini-fab (click)="Set_from_timeFieldValue()" color="primary" class="now"
-                                    matTooltip="Automatically sets current local time" matTooltipClass="custom-tooltip"
-                                    matTooltipShowDelay="600">Now</button>
-
-                            </div>
-                            <!--  -->
-                            <!-- End of Time Field for from_date -->
-                            <!--  -->
                         </div>
+                        <!--  -->
+                        <!-- End of Time Field for from_date -->
+                        <!--  -->
+
 
                     </div>
                     <!-- End of From Date Input Field -->
@@ -337,134 +332,7 @@
             <!-- End of Form -->
             <!--  -->
 
-            <!--  -->
-            <!-- Result Panel -->
-            <!--  -->
-            <div *ngIf="_showResults" class="result-panel">
 
-                <!-- {{ age | json }} -->
-
-                <!--  -->
-                <mat-accordion>
-                    <!--  -->
-                    <mat-expansion-panel expanded="true">
-                        <mat-expansion-panel-header>
-                            <mat-panel-title>Your Age</mat-panel-title>
-
-                            <mat-panel-description>
-                                Age in Year, Month, Weeks, Days, Seconds, Miliseconds
-                            </mat-panel-description>
-                        </mat-expansion-panel-header>
-                        <!--  -->
-                        <!-- Content of the Expansion Panel -->
-                        <!--  -->
-
-                        <mat-list role="list">
-                            <mat-list-item class="text-box-main" role="listitem">
-                                <span class="age-text-main">
-                                    Age is :
-                                </span>
-                                <span class="age-text-value-main">
-                                    {{ age_in_text.age }}
-                                </span>
-                            </mat-list-item>
-                            <!--  -->
-                            <!--  -->
-                            <mat-list-item class="text-box" role="listitem">
-                                <span class="age-text">
-                                    In Months :
-                                </span>
-                                <!--  -->
-                                <span class="age-text-value">
-                                    {{ age_in_text.inOnly_months }}
-                                </span>
-                            </mat-list-item>
-                            <!--  -->
-                            <!--  -->
-                            <mat-list-item class="text-box" role="listitem">
-                                <span class="age-text">
-                                    In Weeks :
-                                </span>
-                                <!--  -->
-                                <span class="age-text-value">
-                                    {{ age_in_text.inOnly_weeks }}
-                                </span>
-                            </mat-list-item>
-                            <!--  -->
-                            <!--  -->
-                            <mat-list-item class="text-box" role="listitem">
-                                <span class="age-text">
-                                    In Days :
-                                </span>
-                                <!--  -->
-                                <span class="age-text-value">
-                                    {{ age_in_text.inOnly_days }}
-                                </span>
-                            </mat-list-item>
-                            <!--  -->
-                            <!--  -->
-                            <mat-list-item class="text-box" role="listitem">
-                                <span class="age-text">
-                                    In Hours :
-                                </span>
-                                <!--  -->
-                                <span class="age-text-value">
-                                    {{ age_in_text.inOnly_hours }}
-                                </span>
-                            </mat-list-item>
-                            <!--  -->
-                            <!--  -->
-                            <mat-list-item class="text-box" role="listitem">
-                                <span class="age-text">
-                                    In Minutes :
-                                </span>
-                                <!--  -->
-                                <span class="age-text-value">
-                                    {{ age_in_text.inOnly_minutes }}
-                                </span>
-                            </mat-list-item>
-                            <!--  -->
-                            <!--  -->
-                            <mat-list-item class="text-box" role="listitem">
-                                <span class="age-text">
-                                    In Seconds :
-                                </span>
-                                <!--  -->
-                                <span class="age-text-value">
-                                    {{ age_in_text.inOnly_seconds }}
-                                </span>
-                            </mat-list-item>
-                            <!--  -->
-                            <!--  -->
-                            <mat-list-item class="text-box" role="listitem">
-                                <span class="age-text">
-                                    In Milliseconds :
-                                </span>
-                                <!--  -->
-                                <span class="age-text-value">
-                                    {{ age_in_text.inOnly_milliseconds }}
-                                </span>
-                            </mat-list-item>
-
-
-
-                            <!--  -->
-                            <!--  -->
-                        </mat-list>
-
-                        <!--  -->
-                        <!-- End of Content of the Expansion Panel -->
-                        <!--  -->
-                    </mat-expansion-panel>
-
-                    <!--  -->
-                </mat-accordion>
-
-                <!--  -->
-            </div>
-            <!--  -->
-            <!-- End of Result Panel -->
-            <!--  -->
         </mat-card-content>
         <!--  -->
         <!-- end of mat-card-content -->
@@ -472,6 +340,271 @@
     </div>
     <!--  -->
     <!-- End of Card Content -->
+    <!--  -->
+
+    <!--  -->
+    <!-- Result Panel -->
+    <!--  -->
+    <div *ngIf="_showResults" class="result-panel">
+        <!--  -->
+        <!-- Create a Tab Link Here -->
+        <!--  -->
+        <mat-tab-group mat-stretch-tabs mat-align-tabs="center" color="primary" class="mat-elevation-z4">
+
+            <mat-tab label="Age">
+
+                <!--  -->
+                <!-- Content of the Tab Age -->
+                <!--  -->
+                <div class="tab-cantent">
+                    <mat-list role="list">
+                        <mat-list-item class="text-box-main" role="listitem">
+                            <span class="age-text-main">
+                                Age is :
+                            </span>
+                            <span class="age-text-value-main">
+                                {{ age_in_text.age }}
+                            </span>
+                        </mat-list-item>
+                        <!--  -->
+                        <!--  -->
+                        <mat-list-item class="text-box" role="listitem">
+                            <span class="age-text">
+                                In Months :
+                            </span>
+                            <!--  -->
+                            <span class="age-text-value">
+                                {{ age_in_text.inOnly_months }}
+                            </span>
+                        </mat-list-item>
+                        <!--  -->
+                        <!--  -->
+                        <mat-list-item class="text-box" role="listitem">
+                            <span class="age-text">
+                                In Weeks :
+                            </span>
+                            <!--  -->
+                            <span class="age-text-value">
+                                {{ age_in_text.inOnly_weeks }}
+                            </span>
+                        </mat-list-item>
+                        <!--  -->
+                        <!--  -->
+                        <mat-list-item class="text-box" role="listitem">
+                            <span class="age-text">
+                                In Days :
+                            </span>
+                            <!--  -->
+                            <span class="age-text-value">
+                                {{ age_in_text.inOnly_days }}
+                            </span>
+                        </mat-list-item>
+                        <!--  -->
+                        <!--  -->
+                        <mat-list-item class="text-box" role="listitem">
+                            <span class="age-text">
+                                In Hours :
+                            </span>
+                            <!--  -->
+                            <span class="age-text-value">
+                                {{ age_in_text.inOnly_hours }}
+                            </span>
+                        </mat-list-item>
+                        <!--  -->
+                        <!--  -->
+                        <mat-list-item class="text-box" role="listitem">
+                            <span class="age-text">
+                                In Minutes :
+                            </span>
+                            <!--  -->
+                            <span class="age-text-value">
+                                {{ age_in_text.inOnly_minutes }}
+                            </span>
+                        </mat-list-item>
+                        <!--  -->
+                        <!--  -->
+                        <mat-list-item class="text-box" role="listitem">
+                            <span class="age-text">
+                                In Seconds :
+                            </span>
+                            <!--  -->
+                            <span class="age-text-value">
+                                {{ age_in_text.inOnly_seconds }}
+                            </span>
+                        </mat-list-item>
+                        <!--  -->
+                        <!--  -->
+                        <mat-list-item class="text-box" role="listitem">
+                            <span class="age-text">
+                                In Milliseconds :
+                            </span>
+                            <!--  -->
+                            <span class="age-text-value">
+                                {{ age_in_text.inOnly_milliseconds }}
+                            </span>
+                        </mat-list-item>
+                        <!--  -->
+                        <!--  -->
+                    </mat-list>
+                </div>
+                <!--  -->
+                <!-- End of Content of the Tab Age -->
+                <!--  -->
+            </mat-tab>
+
+            <mat-tab label="Facts About You">
+                <!--  -->
+                <!-- Content of the Tab Facts About You -->
+                <!--  -->
+                <div class="tab-cantent">
+
+                    <mat-list role="list">
+                        <!--  -->
+                        <!--  -->
+                        <mat-list-item class="text-box" role="listitem">
+                            <span class="age-text">
+                                Breath Taken :
+                            </span>
+                            <!--  -->
+                            <span class="age-text-value">
+                                {{ facts_in_text.breath }}
+                            </span>
+                        </mat-list-item>
+                        <!--  -->
+                        <!--  -->
+                        <!--  -->
+                        <div class="sleep-container">
+                            <!--  -->
+                            <!--  -->
+                            <mat-accordion>
+                                <mat-expansion-panel>
+                                    <mat-expansion-panel-header>
+                                        <mat-panel-title>Slept</mat-panel-title>
+                                        <mat-panel-description>
+                                            Shows how much time you spent on sleeping
+                                        </mat-panel-description>
+                                    </mat-expansion-panel-header>
+
+                                    <!--  -->
+                                    <!-- Content of the expansion panel -->
+                                    <!--  -->
+                                    <mat-list role="list">
+                                        <!--  -->
+                                        <!--  -->
+                                        <mat-list-item class="text-box" role="listitem">
+                                            <span class="age-text">
+                                                Slept :
+                                            </span>
+                                            <!--  -->
+                                            <span class="age-text-value">
+                                                {{ facts_in_text.sleep.slept }}
+                                            </span>
+                                        </mat-list-item>
+                                        <!--  -->
+                                        <!--  -->
+                                        <mat-list-item class="text-box" role="listitem">
+                                            <span class="age-text">
+                                                In Months :
+                                            </span>
+                                            <!--  -->
+                                            <span class="age-text-value">
+                                                {{ facts_in_text.sleep.inOnly_months }}
+                                            </span>
+                                        </mat-list-item>
+                                        <!--  -->
+                                        <!--  -->
+                                        <mat-list-item class="text-box" role="listitem">
+                                            <span class="age-text">
+                                                In Weeks :
+                                            </span>
+                                            <!--  -->
+                                            <span class="age-text-value">
+                                                {{ facts_in_text.sleep.inOnly_weeks }}
+                                            </span>
+                                        </mat-list-item>
+                                        <!--  -->
+                                        <!--  -->
+                                        <mat-list-item class="text-box" role="listitem">
+                                            <span class="age-text">
+                                                In Days :
+                                            </span>
+                                            <!--  -->
+                                            <span class="age-text-value">
+                                                {{ facts_in_text.sleep.inOnly_days }}
+                                            </span>
+                                        </mat-list-item>
+                                        <!--  -->
+                                        <!--  -->
+                                        <mat-list-item class="text-box" role="listitem">
+                                            <span class="age-text">
+                                                In Hours :
+                                            </span>
+                                            <!--  -->
+                                            <span class="age-text-value">
+                                                {{ facts_in_text.sleep.inOnly_hours }}
+                                            </span>
+                                        </mat-list-item>
+                                        <!--  -->
+                                        <!--  -->
+                                        <mat-list-item class="text-box" role="listitem">
+                                            <span class="age-text">
+                                                In Minutes :
+                                            </span>
+                                            <!--  -->
+                                            <span class="age-text-value">
+                                                {{ facts_in_text.sleep.inOnly_minutes }}
+                                            </span>
+                                        </mat-list-item>
+                                    </mat-list>
+                                    <!--  -->
+                                    <!--  -->
+                                </mat-expansion-panel>
+                            </mat-accordion>
+                            <!--  -->
+                            <!--  -->
+                        </div>
+                        <!--  -->
+                        <!--  -->
+
+                        <!--  -->
+                        <!--  -->
+                        <mat-list-item class="text-box" role="listitem">
+                            <span class="age-text">
+                                Heart Beaten :
+                            </span>
+                            <!--  -->
+                            <span class="age-text-value">
+                                {{ facts_in_text.breath }}
+                            </span>
+                        </mat-list-item>
+                    </mat-list>
+                </div>
+                <!--  -->
+                <!-- End of Content of the Tab Facts About You -->
+                <!--  -->
+
+            </mat-tab>
+            <mat-tab label="Age in Other Planet">
+
+                <!--  -->
+                <!-- Content of the Tab Age in Other Planet -->
+                <!--  -->
+                <div class="tab-cantent">
+
+                    Age in Other Planets
+                </div>
+                <!--  -->
+                <!-- End of Content of the Tab Age in Other Planet -->
+                <!--  -->
+            </mat-tab>
+
+        </mat-tab-group>
+        <!--  -->
+        <!-- End of Tab Link -->
+        <!--  -->
+    </div>
+    <!--  -->
+    <!-- End of Result Panel -->
     <!--  -->
 </mat-card>
 <!--  -->
