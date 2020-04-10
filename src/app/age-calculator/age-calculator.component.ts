@@ -132,10 +132,15 @@ export class AgeCalculatorComponent implements OnInit, OnDestroy {
   // 
   private defaultValues = {
     breath_perMinute_inNumber: 16, // 16 times per minute
+
     sleep_perDay_inHour: 8, // 8 hours per day
+
     eatAndDrinkTime_perDay_inHour: 1.11667, // 1.11667 hours per day
+
     heartBeat_perMinute_inNumber: 70, // 70 times per minute
+
     foodEaten_perDay_inKg: 1.81437, // 1.81437 kg per day 
+
     loughs_perDay_inNumber: 17 // 17 times per day
   }
 
@@ -162,8 +167,13 @@ export class AgeCalculatorComponent implements OnInit, OnDestroy {
       // TODO: In Future Here I will add sleep in only hours, months, weeks, days.... all
     },
     heart_beat: 0,
-    food_eaten: 0, // kg, ton e dekhabo
+    food_eaten: { // kg, ton e dekhabo
+      kg: 0,
+      pound: 0,
+      ton: 0
+    },
     loughed: 0, // same as sleep
+
     smartphone_used: 0, // same as sleep
     tv_watched: 0, // same as sleep
   }
@@ -190,7 +200,12 @@ export class AgeCalculatorComponent implements OnInit, OnDestroy {
       // TODO: In Future Here I will add sleep in only hours, months, weeks, days.... all
     },
     heart_beat: '',
-    food_eaten: '',
+    food_eaten: {
+      kg_short: '',
+      kg_long: '',
+      pound: '',
+      ton: ''
+    },
     loughed: '',
     smartphone_used: '',
     tv_watched: '',
@@ -199,7 +214,7 @@ export class AgeCalculatorComponent implements OnInit, OnDestroy {
   public facts_in_text = {
     breath: '',
     sleep: {
-      slept: '',
+      slept: '', // year, month, days, hour, minute
 
       // Only In months, days, years
       inOnly_months: '',
@@ -214,8 +229,16 @@ export class AgeCalculatorComponent implements OnInit, OnDestroy {
       // TODO: In Future Here I will add sleep in only hours, months, weeks, days.... all
     },
     heart_beat: '',
-    eat_and_drink: '',
+
+    food_eaten: {
+      in_kg: '',
+      in_pound: '',
+      in_ton: ''
+    },
+
     loughed: '',
+
+
     smartphone_used: '',
     tv_watched: '',
   }
@@ -557,53 +580,13 @@ export class AgeCalculatorComponent implements OnInit, OnDestroy {
       // 
 
       // 
-      // Calculate Age Here
+      // Get Age Values
       // 
       _age_values = moment.duration(moment(_to_date, "DD MMM YYYY HH:MM:ss").diff(moment(_from_date, "DD MMM YYYY HH:MM:ss")));
 
-      this.age.years = _age_values.years();
-      this.age.months = _age_values.months();
-      this.age.days = _age_values.days();
-      this.age.hours = _age_values.hours();
-      this.age.minutes = _age_values.minutes();
+      // Get all the age values
+      this.Get_age_values(_age_values);
       // 
-
-      // 
-      // _age_values.asMonths() % 1 will return the value after decimal point 
-      // EX. 8.23045 = .23045
-      // 
-      this.age.inOnly_months.months = Math.floor(_age_values.asMonths());
-      this.age.inOnly_months.weeks = (_age_values.asMonths() % 1) * 4.34524;
-      // console.log(`in months [week]: ${this.age.inOnly_months.weeks}`);
-      this.age.inOnly_months.days = Math.floor((this.age.inOnly_months.weeks % 1) * 7);
-      this.age.inOnly_months.weeks = Math.floor(this.age.inOnly_months.weeks);
-
-
-      // 
-      this.age.inOnly_weeks.weeks = Math.floor(_age_values.asWeeks());
-      this.age.inOnly_weeks.days = (_age_values.asWeeks() % 1) * 7;
-      this.age.inOnly_weeks.hours = Math.floor((this.age.inOnly_weeks.days % 1) * 24);
-      this.age.inOnly_weeks.days = Math.floor(this.age.inOnly_weeks.days);
-
-      // 
-      this.age.inOnly_days.days = Math.floor(_age_values.asDays());
-      this.age.inOnly_days.hours = (_age_values.asDays() % 1) * 24;
-      this.age.inOnly_days.minutes = Math.floor((this.age.inOnly_days.hours % 1) * 60);
-      this.age.inOnly_days.hours = Math.floor(this.age.inOnly_days.hours);
-      // 
-      this.age.inOnly_hours.hours = Math.floor(_age_values.asHours());
-      this.age.inOnly_hours.minutes = (_age_values.asHours() % 1) * 60;
-      this.age.inOnly_hours.seconds = Math.floor((this.age.inOnly_hours.minutes % 1) * 60);
-      this.age.inOnly_hours.minutes = Math.floor(this.age.inOnly_hours.minutes);
-      // 
-
-      this.age.inOnly_minutes.minutes = Math.floor(_age_values.asMinutes());
-      this.age.inOnly_minutes.seconds = Math.floor((_age_values.asMinutes() % 1) * 60);
-      //  
-      this.age.inOnly_seconds.seconds = Math.floor(_age_values.asSeconds());
-      this.age.inOnly_seconds.milliseconds = Math.floor((_age_values.asSeconds() % 1) * 1000);
-      // 
-      this.age.inOnly_milliseconds = Math.floor(_age_values.asMilliseconds());
 
       // 
       //#endregion Calculate Age
@@ -696,6 +679,56 @@ export class AgeCalculatorComponent implements OnInit, OnDestroy {
 
   }
   //#endregion ConvertTo24HourFormat(_hour, _amPm)
+
+
+  //#region Get_Age_Values(_age_values)
+  Get_age_values(_age_values) {
+    this.age.years = _age_values.years();
+    this.age.months = _age_values.months();
+    this.age.days = _age_values.days();
+    this.age.hours = _age_values.hours();
+    this.age.minutes = _age_values.minutes();
+    // 
+
+    // 
+    // _age_values.asMonths() % 1 will return the value after decimal point 
+    // EX. 8.23045 = .23045
+    // 
+    this.age.inOnly_months.months = Math.floor(_age_values.asMonths());
+    this.age.inOnly_months.weeks = (_age_values.asMonths() % 1) * 4.34524;
+    // console.log(`in months [week]: ${this.age.inOnly_months.weeks}`);
+    this.age.inOnly_months.days = Math.floor((this.age.inOnly_months.weeks % 1) * 7);
+    this.age.inOnly_months.weeks = Math.floor(this.age.inOnly_months.weeks);
+
+
+    // 
+    this.age.inOnly_weeks.weeks = Math.floor(_age_values.asWeeks());
+    this.age.inOnly_weeks.days = (_age_values.asWeeks() % 1) * 7;
+    this.age.inOnly_weeks.hours = Math.floor((this.age.inOnly_weeks.days % 1) * 24);
+    this.age.inOnly_weeks.days = Math.floor(this.age.inOnly_weeks.days);
+
+    // 
+    this.age.inOnly_days.days = Math.floor(_age_values.asDays());
+    this.age.inOnly_days.hours = (_age_values.asDays() % 1) * 24;
+    this.age.inOnly_days.minutes = Math.floor((this.age.inOnly_days.hours % 1) * 60);
+    this.age.inOnly_days.hours = Math.floor(this.age.inOnly_days.hours);
+    // 
+    this.age.inOnly_hours.hours = Math.floor(_age_values.asHours());
+    this.age.inOnly_hours.minutes = (_age_values.asHours() % 1) * 60;
+    this.age.inOnly_hours.seconds = Math.floor((this.age.inOnly_hours.minutes % 1) * 60);
+    this.age.inOnly_hours.minutes = Math.floor(this.age.inOnly_hours.minutes);
+    // 
+
+    this.age.inOnly_minutes.minutes = Math.floor(_age_values.asMinutes());
+    this.age.inOnly_minutes.seconds = Math.floor((_age_values.asMinutes() % 1) * 60);
+    //  
+    this.age.inOnly_seconds.seconds = Math.floor(_age_values.asSeconds());
+    this.age.inOnly_seconds.milliseconds = Math.floor((_age_values.asSeconds() % 1) * 1000);
+    // 
+    this.age.inOnly_milliseconds = Math.floor(_age_values.asMilliseconds());
+  }
+  //#endregion Get_Age_Values(_age_values)
+
 
   // 
   //#region FormatString_forAge(_age_values)
@@ -830,7 +863,21 @@ export class AgeCalculatorComponent implements OnInit, OnDestroy {
     // 
 
 
+    // 
+    // Get Heart Beat
     this.facts.heart_beat = _age_values.asMinutes() * this.defaultValues.heartBeat_perMinute_inNumber;
+    // 
+
+
+    // Food Eaten
+    this.GetFoodEatenValues(_age_values);
+
+
+    // 
+    // Get Loughs
+    this.facts.loughed = _age_values.asDays() * this.defaultValues.loughs_perDay_inNumber;
+
+
 
     // 
     // Now Format the text for facts_in_text
@@ -946,6 +993,24 @@ export class AgeCalculatorComponent implements OnInit, OnDestroy {
   // 
 
   // 
+  //#region GetFoodEatenValues(_age_values)
+  GetFoodEatenValues(_age_values) {
+    // 
+    this.facts.food_eaten.kg = _age_values.asDays() * this.defaultValues.foodEaten_perDay_inKg;
+
+    // 1 kg = 2.204623 pounds
+    this.facts.food_eaten.pound = this.facts.food_eaten.kg * 2.204623;
+
+    // 1 kg = 0.00110231 metric ton
+    this.facts.food_eaten.ton = this.facts.food_eaten.kg * 0.00110231;
+  }
+  //#endregion GetFoodEatenValues(_age_values)
+  // 
+
+
+
+
+  // 
   //#region FormatFacts_inText()
   FormatFacts_inText() {
     // 
@@ -966,6 +1031,16 @@ export class AgeCalculatorComponent implements OnInit, OnDestroy {
     // 
     // 
     this.facts_in_text.heart_beat = `${this.facts.heart_beat.toLocaleString()} ${this.SingularOrPlural(this.facts.heart_beat, 'time', 'times')}`;
+    // 
+    // 
+    this.facts_in_text.food_eaten.in_kg = `${this.facts.food_eaten.kg.toLocaleString()} ${this.SingularOrPlural(this.facts.food_eaten.kg, 'kilogram', 'kilograms')}`;
+    // 
+    this.facts_in_text.food_eaten.in_pound = `${this.facts.food_eaten.pound.toLocaleString()} ${this.SingularOrPlural(this.facts.food_eaten.pound, 'pound', 'pounds')}`;
+    // 
+    this.facts_in_text.food_eaten.in_ton = `${this.facts.food_eaten.ton.toLocaleString()} ${this.SingularOrPlural(this.facts.food_eaten.ton, 'Metric ton', 'Metric tons')}`;
+    // 
+    // 
+    this.facts_in_text.loughed = `${this.facts.loughed.toLocaleString()} ${this.SingularOrPlural(this.facts.loughed, 'time', 'times')}`
   }
   // 
   //#endregion FormatFacts_inText()

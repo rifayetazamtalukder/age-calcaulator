@@ -305,7 +305,7 @@
                 <!-- End of Form Container -->
                 <!--  -->
 
-
+                <!-- Button Group -->
                 <div class="button-group">
                     <!--  -->
                     <!-- Submit Button -->
@@ -327,11 +327,388 @@
                     <!-- End of Reset Button -->
                     <!--  -->
                 </div>
+                <!-- End of Button Group -->
             </form>
             <!--  -->
             <!-- End of Form -->
             <!--  -->
 
+            <!--  -->
+            <!-- Result Panel -->
+            <!--  -->
+            <div *ngIf="_showResults" class="result-panel">
+                <!--  -->
+                <!-- Parent Tab Link For Result -->
+                <!--  -->
+                <mat-tab-group mat-stretch-tabs mat-align-tabs="center" color="primary" class="mat-elevation-z4">
+
+                    <!--  -->
+                    <!-- Youre Age -->
+                    <!--  -->
+                    <mat-tab label="Age">
+
+                        <!--  -->
+                        <!-- Content of the Tab Age -->
+                        <!--  -->
+                        <div class="tab-cantent">
+                            <mat-list role="list">
+                                <mat-list-item class="text-box-main" role="listitem">
+                                    <span class="age-text-main">
+                                        Age is :
+                                    </span>
+                                    <span class="age-text-value-main">
+                                        {{ age_in_text.age }}
+                                    </span>
+                                </mat-list-item>
+                                <!--  -->
+                                <!--  -->
+                                <mat-list-item class="text-box" role="listitem">
+                                    <span class="age-text">
+                                        In Months :
+                                    </span>
+                                    <!--  -->
+                                    <span class="age-text-value">
+                                        {{ age_in_text.inOnly_months }}
+                                    </span>
+                                </mat-list-item>
+                                <!--  -->
+                                <!--  -->
+                                <mat-list-item class="text-box" role="listitem">
+                                    <span class="age-text">
+                                        In Weeks :
+                                    </span>
+                                    <!--  -->
+                                    <span class="age-text-value">
+                                        {{ age_in_text.inOnly_weeks }}
+                                    </span>
+                                </mat-list-item>
+                                <!--  -->
+                                <!--  -->
+                                <mat-list-item class="text-box" role="listitem">
+                                    <span class="age-text">
+                                        In Days :
+                                    </span>
+                                    <!--  -->
+                                    <span class="age-text-value">
+                                        {{ age_in_text.inOnly_days }}
+                                    </span>
+                                </mat-list-item>
+                                <!--  -->
+                                <!--  -->
+                                <mat-list-item class="text-box" role="listitem">
+                                    <span class="age-text">
+                                        In Hours :
+                                    </span>
+                                    <!--  -->
+                                    <span class="age-text-value">
+                                        {{ age_in_text.inOnly_hours }}
+                                    </span>
+                                </mat-list-item>
+                                <!--  -->
+                                <!--  -->
+                                <mat-list-item class="text-box" role="listitem">
+                                    <span class="age-text">
+                                        In Minutes :
+                                    </span>
+                                    <!--  -->
+                                    <span class="age-text-value">
+                                        {{ age_in_text.inOnly_minutes }}
+                                    </span>
+                                </mat-list-item>
+                                <!--  -->
+                                <!--  -->
+                                <mat-list-item class="text-box" role="listitem">
+                                    <span class="age-text">
+                                        In Seconds :
+                                    </span>
+                                    <!--  -->
+                                    <span class="age-text-value">
+                                        {{ age_in_text.inOnly_seconds }}
+                                    </span>
+                                </mat-list-item>
+                                <!--  -->
+                                <!--  -->
+                                <mat-list-item class="text-box" role="listitem">
+                                    <span class="age-text">
+                                        In Milliseconds :
+                                    </span>
+                                    <!--  -->
+                                    <span class="age-text-value">
+                                        {{ age_in_text.inOnly_milliseconds }}
+                                    </span>
+                                </mat-list-item>
+                                <!--  -->
+                                <!--  -->
+                            </mat-list>
+                        </div>
+                        <!--  -->
+                        <!-- End of Content of the Tab Age -->
+                        <!--  -->
+                    </mat-tab>
+                    <!--  -->
+                    <!-- Youre Age -->
+                    <!--  -->
+
+                    <!--  -->
+                    <!-- Facts About You -->
+                    <!--  -->
+                    <mat-tab label="Facts About You">
+                        <!--  -->
+                        <!-- Content of the Tab Facts About You -->
+                        <!--  -->
+                        <div class="tab-cantent">
+
+                            <mat-list role="list">
+                                <!--  -->
+                                <!-- Breath Taken -->
+                                <!--  -->
+                                <mat-list-item class="text-box" role="listitem">
+                                    <span class="age-text">
+                                        Breath Taken :
+                                    </span>
+                                    <!--  -->
+                                    <span class="age-text-value">
+                                        {{ facts_in_text.breath }}
+                                    </span>
+                                </mat-list-item>
+                                <!--  -->
+                                <!-- End of Breath Taken -->
+                                <!--  -->
+                                <!-- ************************************************************************* -->
+                                <!--  -->
+                                <!-- Sleep values -->
+                                <!--  -->
+                                <div class="expansion-panel-container">
+                                    <!--  -->
+                                    <!--  -->
+                                    <mat-accordion>
+                                        <mat-expansion-panel>
+                                            <mat-expansion-panel-header>
+                                                <mat-panel-title>Slept</mat-panel-title>
+                                                <mat-panel-description>
+                                                    Shows how much time you spent on sleeping
+                                                </mat-panel-description>
+                                            </mat-expansion-panel-header>
+
+                                            <!--  -->
+                                            <!-- Content of the expansion panel -->
+                                            <!--  -->
+                                            <mat-list role="list">
+                                                <!--  -->
+                                                <!--  -->
+                                                <mat-list-item class="text-box" role="listitem">
+                                                    <span class="age-text">
+                                                        Slept :
+                                                    </span>
+                                                    <!--  -->
+                                                    <span class="age-text-value">
+                                                        {{ facts_in_text.sleep.slept }}
+                                                    </span>
+                                                </mat-list-item>
+                                                <!--  -->
+                                                <!--  -->
+                                                <mat-list-item class="text-box" role="listitem">
+                                                    <span class="age-text">
+                                                        In Months :
+                                                    </span>
+                                                    <!--  -->
+                                                    <span class="age-text-value">
+                                                        {{ facts_in_text.sleep.inOnly_months }}
+                                                    </span>
+                                                </mat-list-item>
+                                                <!--  -->
+                                                <!--  -->
+                                                <mat-list-item class="text-box" role="listitem">
+                                                    <span class="age-text">
+                                                        In Weeks :
+                                                    </span>
+                                                    <!--  -->
+                                                    <span class="age-text-value">
+                                                        {{ facts_in_text.sleep.inOnly_weeks }}
+                                                    </span>
+                                                </mat-list-item>
+                                                <!--  -->
+                                                <!--  -->
+                                                <mat-list-item class="text-box" role="listitem">
+                                                    <span class="age-text">
+                                                        In Days :
+                                                    </span>
+                                                    <!--  -->
+                                                    <span class="age-text-value">
+                                                        {{ facts_in_text.sleep.inOnly_days }}
+                                                    </span>
+                                                </mat-list-item>
+                                                <!--  -->
+                                                <!--  -->
+                                                <mat-list-item class="text-box" role="listitem">
+                                                    <span class="age-text">
+                                                        In Hours :
+                                                    </span>
+                                                    <!--  -->
+                                                    <span class="age-text-value">
+                                                        {{ facts_in_text.sleep.inOnly_hours }}
+                                                    </span>
+                                                </mat-list-item>
+                                                <!--  -->
+                                                <!--  -->
+                                                <mat-list-item class="text-box" role="listitem">
+                                                    <span class="age-text">
+                                                        In Minutes :
+                                                    </span>
+                                                    <!--  -->
+                                                    <span class="age-text-value">
+                                                        {{ facts_in_text.sleep.inOnly_minutes }}
+                                                    </span>
+                                                </mat-list-item>
+                                            </mat-list>
+                                            <!--  -->
+                                            <!--  -->
+                                        </mat-expansion-panel>
+                                    </mat-accordion>
+                                    <!--  -->
+                                    <!--  -->
+                                </div>
+                                <!--  -->
+                                <!-- End of Sleep values -->
+                                <!--  -->
+                                <!-- ************************************************************************* -->
+                                <!--  -->
+                                <!-- Heart Beat -->
+                                <!--  -->
+                                <mat-list-item class="text-box" role="listitem">
+                                    <span class="age-text">
+                                        Heart Beaten :
+                                    </span>
+                                    <!--  -->
+                                    <span class="age-text-value">
+                                        {{ facts_in_text.heart_beat }}
+                                    </span>
+                                </mat-list-item>
+                                <!--  -->
+                                <!-- End of Heart Beat -->
+                                <!--  -->
+                                <!-- ************************************************************************* -->
+                                <!--  -->
+                                <!-- Loughed -->
+                                <!--  -->
+                                <mat-list-item class="text-box" role="listitem">
+                                    <span class="age-text">
+                                        Loughed :
+                                    </span>
+                                    <!--  -->
+                                    <span class="age-text-value">
+                                        {{ facts_in_text.loughed }}
+                                    </span>
+                                </mat-list-item>
+                                <!--  -->
+                                <!-- End of Loughed -->
+                                <!--  -->
+                                <!-- ************************************************************************* -->
+                                <!--  -->
+                                <!-- Food Eaten values -->
+                                <!--  -->
+                                <div class="expansion-panel-container">
+                                    <!--  -->
+                                    <!--  -->
+                                    <mat-accordion>
+                                        <mat-expansion-panel>
+                                            <mat-expansion-panel-header>
+                                                <mat-panel-title>Food Eaten</mat-panel-title>
+                                                <mat-panel-description>
+                                                    Shows how much food you have eaten
+                                                </mat-panel-description>
+                                            </mat-expansion-panel-header>
+
+                                            <!--  -->
+                                            <!-- Content of the expansion panel -->
+                                            <!--  -->
+                                            <mat-list role="list">
+                                                <!--  -->
+                                                <!--  -->
+                                                <mat-list-item class="text-box" role="listitem">
+                                                    <span class="age-text">
+                                                        In Kilograms :
+                                                    </span>
+                                                    <!--  -->
+                                                    <span class="age-text-value">
+                                                        {{ facts_in_text.food_eaten.in_kg }}
+                                                    </span>
+                                                </mat-list-item>
+                                                <!--  -->
+                                                <!--  -->
+                                                <mat-list-item class="text-box" role="listitem">
+                                                    <span class="age-text">
+                                                        In Pounds :
+                                                    </span>
+                                                    <!--  -->
+                                                    <span class="age-text-value">
+                                                        {{ facts_in_text.food_eaten.in_pound }}
+                                                    </span>
+                                                </mat-list-item>
+                                                <!--  -->
+                                                <!--  -->
+                                                <mat-list-item class="text-box" role="listitem">
+                                                    <span class="age-text">
+                                                        In Metric Tons :
+                                                    </span>
+                                                    <!--  -->
+                                                    <span class="age-text-value">
+                                                        {{ facts_in_text.food_eaten.in_ton }}
+                                                    </span>
+                                                </mat-list-item>
+                                                <!--  -->
+                                                <!--  -->
+                                            </mat-list>
+                                            <!--  -->
+                                            <!--  -->
+                                        </mat-expansion-panel>
+                                    </mat-accordion>
+                                    <!--  -->
+                                    <!--  -->
+                                </div>
+                                <!--  -->
+                                <!-- End of Food Eaten values -->
+                                <!--  -->
+                                <!--  -->
+                            </mat-list>
+                        </div>
+                        <!--  -->
+                        <!-- End of Content of the Tab Facts About You -->
+                        <!--  -->
+
+                    </mat-tab>
+                    <!--  -->
+                    <!-- End of Facts About You -->
+                    <!--  -->
+
+                    <!--  -->
+                    <!-- Age In Other Planets -->
+                    <!--  -->
+                    <mat-tab label="Age in Other Planet">
+
+                        <!--  -->
+                        <!-- Content of the Tab Age in Other Planet -->
+                        <!--  -->
+                        <div class="tab-cantent">
+
+                            Age in Other Planets
+                        </div>
+                        <!--  -->
+                        <!-- End of Content of the Tab Age in Other Planet -->
+                        <!--  -->
+                    </mat-tab>
+                    <!--  -->
+                    <!-- End of Age In Other Planets -->
+                    <!--  -->
+
+                </mat-tab-group>
+                <!--  -->
+                <!-- Parent Tab Link For Result -->
+                <!--  -->
+            </div>
+            <!--  -->
+            <!-- End of Result Panel -->
+            <!--  -->
 
         </mat-card-content>
         <!--  -->
@@ -340,286 +717,6 @@
     </div>
     <!--  -->
     <!-- End of Card Content -->
-    <!--  -->
-
-    <!--  -->
-    <!-- Result Panel -->
-    <!--  -->
-    <div *ngIf="_showResults" class="result-panel">
-        <!--  -->
-        <!-- Create a Tab Link Here -->
-        <!--  -->
-        <mat-tab-group mat-stretch-tabs mat-align-tabs="center" color="primary" class="mat-elevation-z4">
-
-            <mat-tab label="Age">
-
-                <!--  -->
-                <!-- Content of the Tab Age -->
-                <!--  -->
-                <div class="tab-cantent">
-                    <mat-list role="list">
-                        <mat-list-item class="text-box-main" role="listitem">
-                            <span class="age-text-main">
-                                Age is :
-                            </span>
-                            <span class="age-text-value-main">
-                                {{ age_in_text.age }}
-                            </span>
-                        </mat-list-item>
-                        <!--  -->
-                        <!--  -->
-                        <mat-list-item class="text-box" role="listitem">
-                            <span class="age-text">
-                                In Months :
-                            </span>
-                            <!--  -->
-                            <span class="age-text-value">
-                                {{ age_in_text.inOnly_months }}
-                            </span>
-                        </mat-list-item>
-                        <!--  -->
-                        <!--  -->
-                        <mat-list-item class="text-box" role="listitem">
-                            <span class="age-text">
-                                In Weeks :
-                            </span>
-                            <!--  -->
-                            <span class="age-text-value">
-                                {{ age_in_text.inOnly_weeks }}
-                            </span>
-                        </mat-list-item>
-                        <!--  -->
-                        <!--  -->
-                        <mat-list-item class="text-box" role="listitem">
-                            <span class="age-text">
-                                In Days :
-                            </span>
-                            <!--  -->
-                            <span class="age-text-value">
-                                {{ age_in_text.inOnly_days }}
-                            </span>
-                        </mat-list-item>
-                        <!--  -->
-                        <!--  -->
-                        <mat-list-item class="text-box" role="listitem">
-                            <span class="age-text">
-                                In Hours :
-                            </span>
-                            <!--  -->
-                            <span class="age-text-value">
-                                {{ age_in_text.inOnly_hours }}
-                            </span>
-                        </mat-list-item>
-                        <!--  -->
-                        <!--  -->
-                        <mat-list-item class="text-box" role="listitem">
-                            <span class="age-text">
-                                In Minutes :
-                            </span>
-                            <!--  -->
-                            <span class="age-text-value">
-                                {{ age_in_text.inOnly_minutes }}
-                            </span>
-                        </mat-list-item>
-                        <!--  -->
-                        <!--  -->
-                        <mat-list-item class="text-box" role="listitem">
-                            <span class="age-text">
-                                In Seconds :
-                            </span>
-                            <!--  -->
-                            <span class="age-text-value">
-                                {{ age_in_text.inOnly_seconds }}
-                            </span>
-                        </mat-list-item>
-                        <!--  -->
-                        <!--  -->
-                        <mat-list-item class="text-box" role="listitem">
-                            <span class="age-text">
-                                In Milliseconds :
-                            </span>
-                            <!--  -->
-                            <span class="age-text-value">
-                                {{ age_in_text.inOnly_milliseconds }}
-                            </span>
-                        </mat-list-item>
-                        <!--  -->
-                        <!--  -->
-                    </mat-list>
-                </div>
-                <!--  -->
-                <!-- End of Content of the Tab Age -->
-                <!--  -->
-            </mat-tab>
-
-            <mat-tab label="Facts About You">
-                <!--  -->
-                <!-- Content of the Tab Facts About You -->
-                <!--  -->
-                <div class="tab-cantent">
-
-                    <mat-list role="list">
-                        <!--  -->
-                        <!-- Breath Taken -->
-                        <!--  -->
-                        <mat-list-item class="text-box" role="listitem">
-                            <span class="age-text">
-                                Breath Taken :
-                            </span>
-                            <!--  -->
-                            <span class="age-text-value">
-                                {{ facts_in_text.breath }}
-                            </span>
-                        </mat-list-item>
-                        <!--  -->
-                        <!-- End of Breath Taken -->
-                        <!--  -->
-                        <!-- ************************************************************************* -->
-                        <!--  -->
-                        <!-- Sleep values -->
-                        <!--  -->
-                        <div class="sleep-container">
-                            <!--  -->
-                            <!--  -->
-                            <mat-accordion>
-                                <mat-expansion-panel>
-                                    <mat-expansion-panel-header>
-                                        <mat-panel-title>Slept</mat-panel-title>
-                                        <mat-panel-description>
-                                            Shows how much time you spent on sleeping
-                                        </mat-panel-description>
-                                    </mat-expansion-panel-header>
-
-                                    <!--  -->
-                                    <!-- Content of the expansion panel -->
-                                    <!--  -->
-                                    <mat-list role="list">
-                                        <!--  -->
-                                        <!--  -->
-                                        <mat-list-item class="text-box" role="listitem">
-                                            <span class="age-text">
-                                                Slept :
-                                            </span>
-                                            <!--  -->
-                                            <span class="age-text-value">
-                                                {{ facts_in_text.sleep.slept }}
-                                            </span>
-                                        </mat-list-item>
-                                        <!--  -->
-                                        <!--  -->
-                                        <mat-list-item class="text-box" role="listitem">
-                                            <span class="age-text">
-                                                In Months :
-                                            </span>
-                                            <!--  -->
-                                            <span class="age-text-value">
-                                                {{ facts_in_text.sleep.inOnly_months }}
-                                            </span>
-                                        </mat-list-item>
-                                        <!--  -->
-                                        <!--  -->
-                                        <mat-list-item class="text-box" role="listitem">
-                                            <span class="age-text">
-                                                In Weeks :
-                                            </span>
-                                            <!--  -->
-                                            <span class="age-text-value">
-                                                {{ facts_in_text.sleep.inOnly_weeks }}
-                                            </span>
-                                        </mat-list-item>
-                                        <!--  -->
-                                        <!--  -->
-                                        <mat-list-item class="text-box" role="listitem">
-                                            <span class="age-text">
-                                                In Days :
-                                            </span>
-                                            <!--  -->
-                                            <span class="age-text-value">
-                                                {{ facts_in_text.sleep.inOnly_days }}
-                                            </span>
-                                        </mat-list-item>
-                                        <!--  -->
-                                        <!--  -->
-                                        <mat-list-item class="text-box" role="listitem">
-                                            <span class="age-text">
-                                                In Hours :
-                                            </span>
-                                            <!--  -->
-                                            <span class="age-text-value">
-                                                {{ facts_in_text.sleep.inOnly_hours }}
-                                            </span>
-                                        </mat-list-item>
-                                        <!--  -->
-                                        <!--  -->
-                                        <mat-list-item class="text-box" role="listitem">
-                                            <span class="age-text">
-                                                In Minutes :
-                                            </span>
-                                            <!--  -->
-                                            <span class="age-text-value">
-                                                {{ facts_in_text.sleep.inOnly_minutes }}
-                                            </span>
-                                        </mat-list-item>
-                                    </mat-list>
-                                    <!--  -->
-                                    <!--  -->
-                                </mat-expansion-panel>
-                            </mat-accordion>
-                            <!--  -->
-                            <!--  -->
-                        </div>
-                        <!--  -->
-                        <!-- End of Sleep values -->
-                        <!--  -->
-                        <!-- ************************************************************************* -->
-                        <!--  -->
-                        <!-- Heart Beat -->
-                        <!--  -->
-                        <mat-list-item class="text-box" role="listitem">
-                            <span class="age-text">
-                                Heart Beaten :
-                            </span>
-                            <!--  -->
-                            <span class="age-text-value">
-                                {{ facts_in_text.heart_beat }}
-                            </span>
-                        </mat-list-item>
-                        <!--  -->
-                        <!-- End of Heart Beat -->
-                        <!--  -->
-                        <!-- ************************************************************************* -->
-
-
-
-                        <!--  -->
-                    </mat-list>
-                </div>
-                <!--  -->
-                <!-- End of Content of the Tab Facts About You -->
-                <!--  -->
-
-            </mat-tab>
-            <mat-tab label="Age in Other Planet">
-
-                <!--  -->
-                <!-- Content of the Tab Age in Other Planet -->
-                <!--  -->
-                <div class="tab-cantent">
-
-                    Age in Other Planets
-                </div>
-                <!--  -->
-                <!-- End of Content of the Tab Age in Other Planet -->
-                <!--  -->
-            </mat-tab>
-
-        </mat-tab-group>
-        <!--  -->
-        <!-- End of Tab Link -->
-        <!--  -->
-    </div>
-    <!--  -->
-    <!-- End of Result Panel -->
     <!--  -->
 </mat-card>
 <!--  -->
