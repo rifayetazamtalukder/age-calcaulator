@@ -32,11 +32,11 @@
             <!--  -->
             <!-- Form -->
             <!--  -->
-            <form [formGroup]="age_form" class="form">
+            <form [formGroup]="age_form" class="form" ngSubmit="onSubmit()">
                 <!--  -->
                 <!-- Form Container -->
                 <!--  -->
-                <div class="form-container">
+                <div class=" form-container">
                     <!--  -->
                     <!-- From Date Input Field -->
                     <!--  -->
@@ -502,7 +502,7 @@
                                                     </span>
                                                     <!--  -->
                                                     <span class="age-text-value">
-                                                        {{ facts_in_text.sleep.slept }}
+                                                        {{ facts_in_text.sleep.age }}
                                                     </span>
                                                 </mat-list-item>
                                                 <!--  -->
@@ -562,6 +562,7 @@
                                                 </mat-list-item>
                                             </mat-list>
                                             <!--  -->
+                                            <!-- End of Content of the expansion panel -->
                                             <!--  -->
                                         </mat-expansion-panel>
                                     </mat-accordion>
@@ -670,6 +671,106 @@
                                 <!-- End of Food Eaten values -->
                                 <!--  -->
                                 <!--  -->
+
+                                <!-- ************************************************************************* -->
+                                <!--  -->
+                                <!-- Eat and Drink Time -->
+                                <!--  -->
+                                <div class="expansion-panel-container">
+                                    <!--  -->
+                                    <!--  -->
+                                    <mat-accordion>
+                                        <mat-expansion-panel>
+                                            <mat-expansion-panel-header>
+                                                <mat-panel-title>Eat and Drink Time</mat-panel-title>
+                                                <mat-panel-description>
+                                                    Shows how much time you spent on eating and drinking
+                                                </mat-panel-description>
+                                            </mat-expansion-panel-header>
+
+                                            <!--  -->
+                                            <!-- Content of the expansion panel -->
+                                            <!--  -->
+                                            <mat-list role="list">
+                                                <!--  -->
+                                                <!--  -->
+                                                <mat-list-item class="text-box" role="listitem">
+                                                    <span class="age-text">
+                                                        Eat and Drink Time :
+                                                    </span>
+                                                    <!--  -->
+                                                    <span class="age-text-value">
+                                                        {{ facts_in_text.eat_and_drink.age }}
+                                                    </span>
+                                                </mat-list-item>
+                                                <!--  -->
+                                                <!--  -->
+                                                <mat-list-item class="text-box" role="listitem">
+                                                    <span class="age-text">
+                                                        In Months :
+                                                    </span>
+                                                    <!--  -->
+                                                    <span class="age-text-value">
+                                                        {{ facts_in_text.eat_and_drink.inOnly_months }}
+                                                    </span>
+                                                </mat-list-item>
+                                                <!--  -->
+                                                <!--  -->
+                                                <mat-list-item class="text-box" role="listitem">
+                                                    <span class="age-text">
+                                                        In Weeks :
+                                                    </span>
+                                                    <!--  -->
+                                                    <span class="age-text-value">
+                                                        {{ facts_in_text.eat_and_drink.inOnly_weeks }}
+                                                    </span>
+                                                </mat-list-item>
+                                                <!--  -->
+                                                <!--  -->
+                                                <mat-list-item class="text-box" role="listitem">
+                                                    <span class="age-text">
+                                                        In Days :
+                                                    </span>
+                                                    <!--  -->
+                                                    <span class="age-text-value">
+                                                        {{ facts_in_text.eat_and_drink.inOnly_days }}
+                                                    </span>
+                                                </mat-list-item>
+                                                <!--  -->
+                                                <!--  -->
+                                                <mat-list-item class="text-box" role="listitem">
+                                                    <span class="age-text">
+                                                        In Hours :
+                                                    </span>
+                                                    <!--  -->
+                                                    <span class="age-text-value">
+                                                        {{ facts_in_text.eat_and_drink.inOnly_hours }}
+                                                    </span>
+                                                </mat-list-item>
+                                                <!--  -->
+                                                <!--  -->
+                                                <mat-list-item class="text-box" role="listitem">
+                                                    <span class="age-text">
+                                                        In Minutes :
+                                                    </span>
+                                                    <!--  -->
+                                                    <span class="age-text-value">
+                                                        {{ facts_in_text.eat_and_drink.inOnly_minutes }}
+                                                    </span>
+                                                </mat-list-item>
+                                            </mat-list>
+                                            <!--  -->
+                                            <!-- End of Content of the expansion panel -->
+                                            <!--  -->
+                                        </mat-expansion-panel>
+                                    </mat-accordion>
+                                    <!--  -->
+                                    <!--  -->
+                                </div>
+                                <!--  -->
+                                <!-- End of Eat and Drink Time -->
+                                <!--  -->
+                                <!--  -->
                             </mat-list>
                         </div>
                         <!--  -->
@@ -690,8 +791,98 @@
                         <!-- Content of the Tab Age in Other Planet -->
                         <!--  -->
                         <div class="tab-cantent">
-
-                            Age in Other Planets
+                            <mat-list role="list">
+                                <!--  -->
+                                <!--  -->
+                                <mat-list-item class="text-box" role="listitem">
+                                    <span class="age-text">
+                                        In Mercury :
+                                    </span>
+                                    <!--  -->
+                                    <span class="age-text-value">
+                                        {{ age_on_other_planet_in_text.mercury }}
+                                    </span>
+                                </mat-list-item>
+                                <!--  -->
+                                <!--  -->
+                                <mat-list-item class="text-box" role="listitem">
+                                    <span class="age-text">
+                                        In Venus :
+                                    </span>
+                                    <!--  -->
+                                    <span class="age-text-value">
+                                        {{ age_on_other_planet_in_text.venus }}
+                                    </span>
+                                </mat-list-item>
+                                <!--  -->
+                                <!--  -->
+                                <mat-list-item class="text-box" role="listitem">
+                                    <span class="age-text">
+                                        In Mars :
+                                    </span>
+                                    <!--  -->
+                                    <span class="age-text-value">
+                                        {{ age_on_other_planet_in_text.mars }}
+                                    </span>
+                                </mat-list-item>
+                                <!--  -->
+                                <!--  -->
+                                <mat-list-item class="text-box" role="listitem">
+                                    <span class="age-text">
+                                        In Jupitar :
+                                    </span>
+                                    <!--  -->
+                                    <span class="age-text-value">
+                                        {{ age_on_other_planet_in_text.jupitar }}
+                                    </span>
+                                </mat-list-item>
+                                <!--  -->
+                                <!--  -->
+                                <mat-list-item class="text-box" role="listitem">
+                                    <span class="age-text">
+                                        In Saturn :
+                                    </span>
+                                    <!--  -->
+                                    <span class="age-text-value">
+                                        {{ age_on_other_planet_in_text.saturn }}
+                                    </span>
+                                </mat-list-item>
+                                <!--  -->
+                                <!--  -->
+                                <mat-list-item class="text-box" role="listitem">
+                                    <span class="age-text">
+                                        In Uranus :
+                                    </span>
+                                    <!--  -->
+                                    <span class="age-text-value">
+                                        {{ age_on_other_planet_in_text.uranus }}
+                                    </span>
+                                </mat-list-item>
+                                <!--  -->
+                                <!--  -->
+                                <mat-list-item class="text-box" role="listitem">
+                                    <span class="age-text">
+                                        In Neptune :
+                                    </span>
+                                    <!--  -->
+                                    <span class="age-text-value">
+                                        {{ age_on_other_planet_in_text.neptune }}
+                                    </span>
+                                </mat-list-item>
+                                <!--  -->
+                                <!--  -->
+                                <mat-list-item class="text-box" role="listitem">
+                                    <span class="age-text">
+                                        In Pluto :
+                                    </span>
+                                    <!--  -->
+                                    <span class="age-text-value">
+                                        {{ age_on_other_planet_in_text.pluto }}
+                                    </span>
+                                </mat-list-item>
+                                <!--  -->
+                                <!--  -->
+                            </mat-list>
                         </div>
                         <!--  -->
                         <!-- End of Content of the Tab Age in Other Planet -->
